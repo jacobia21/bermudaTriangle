@@ -25,11 +25,14 @@ def getUserInfo(path):
     log_url = ''
     if cur_user:
         log_url = users.create_logout_url(path)
+        name = cur_user.nickname().split('@')[0]
     else:
         log_url = users.create_login_url(path)
+        name = 'none'
     return {
         "log_url": log_url,
-        "user": cur_user
+        "user": cur_user,
+        "username": name
     }
 
 class MainHandler(webapp2.RequestHandler):
