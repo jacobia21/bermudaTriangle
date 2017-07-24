@@ -32,14 +32,15 @@ li a:hover {
 .login {
   float: right;
 }
-
 .container {
   display: flex;
 }
 .vertical {
   display: inline-block;
 }
-
+h1{
+  color: white;
+}
 h2{
   color: white;
   font-style: helvetica;
