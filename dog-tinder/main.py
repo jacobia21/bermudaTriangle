@@ -120,6 +120,24 @@ class DiscussPostMaker(webapp2.RequestHandler):
         discuss_post.put()
         self.redirect('/discuss')
 
+class SaveProfileChanges(webapp2.RequestHandler):
+    def post(self):
+        user_info = getUserInfo('/')
+        user = user_info['user']
+
+        if not user:
+            self.redirect('/')
+
+        user_key = ndb.Key('User',user.nickname())
+        user_ent = user_key.get()
+        if not user_ent:
+            user_ent = User(
+                name = user.nickname().split('@')[0]
+            )
+        user_ent.key = user_key
+        user_ent.put()
+
+        self.redirect('/my_profile')
 
 
 app = webapp2.WSGIApplication([
@@ -131,4 +149,5 @@ app = webapp2.WSGIApplication([
 
     ('/my_profile', MyProfile),
     ('/discuss/makepost', DiscussPostMaker),
+    ('/profile/submit_changes', SaveProfileChanges),
 ], debug=True)

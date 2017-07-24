@@ -1,30 +1,54 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-  <link type="text/css" rel="stylesheet" href= "../resources/style.css"/>
-  <script type="text/javascript" src="../resources/main.js"></script>
-</head>
-<body>
-  <title> Edit Profile</title>
-  <h4> Dog's Name: <input type="text" name="name"></h4>
-  <h4> Age: <input type="text" name="age"></h4>
-  <h4> Breed: <input type="text" name="breed"></input></h3>
-  <h4> Hometown: <input type="text" name="town"></h4>
-  <h4> Is your dog lazy or active?: </h4>
-  <input type = "radio" name="lazy" value="lazy">Lazy</input>
-  <br>
-  <input type = "radio" name="active" value="Active">Active</input>
-  <h4> Favorite Toy: <input type="text" name="FavoriteToy"></input></h4>
-  <h4> All About Me: <input type="text" name="AllAboutMe"></input></h4>
-  <h4> If your dog friendly with kids?</h4>
-  <input type="radio" name="yes" value="Yes">Yes</input>
-  <input type="radio" name="no" value="No">No</input>
-  <h4> Is your dog up to date on vaccines?</h4>
-  <input type="radio" name="yes" value="Yes">Yes</input>
-  <input type="radio" name="no" value="No">No</input>
-  <h4> Is your dog friendly with other dogs?</h4>
-  <input type="radio" name="yes" value="Yes">Yes</input>
-  <input type="radio" name="no" value="No">No</input>
-  <p><input type="submit" value="Submit"></input></p>
-</body>
+  <head>
+    <title>Edit Profile</title>
+    <link type="text/css" rel="stylesheet" href="../resources/style.css"/>
+    <script type="text/javascript" src="../resources/main.js"></script>
+  </head>
+  <body>
+    <h1>Canine Companions</h1>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/all_profiles">Other Profiles</a></li>
+      <li><a href="/discuss">Discussion</a></li>
+      <li class="headerRight">
+        {% if user %}
+        <a href="{{log_url}}">Logout</a>
+        {% else %}
+        <a href="{{log_url}}">Login</a>
+        {% endif %}
+      </li>
+      {% if user %}
+      <li class="headerRight"><a href="/my_profile">{{username}}</a></li>
+      {% endif %}
+      <div class="searchBar">
+        <input type="text" name="Search Bar"/>
+        <input type="submit" value="Submit">
+      </div>
+    </ul>
+
+
+    <form method="post" action"/profile/submit_changes">
+      <h4>Dog's Name: <input type="text" name="name"></h4>
+      <h4>Age: <input type="text" name="age"></h4>
+      <h4>Breed: <input type="text" name="breed"></input></h3>
+      <h4>Hometown: <input type="text" name="town"></h4>
+      <h4>Is your dog lazy or active?: </h4>
+      <input type="radio" name="active" value="false">Lazy</input>
+      <br>
+      <input type="radio" name="active" value="true">Active</input>
+      <h4>Favorite Toy: <input type="text" name="FavoriteToy"></input></h4>
+      <h4>All About Me: <input type="text" name="AllAboutMe"></input></h4>
+      <h4>If your dog friendly with kids?</h4>
+      <input type="radio" name="kid_friendly" value="true">Yes</input>
+      <input type="radio" name="kid_friendly" value="false">No</input>
+      <h4>Is your dog up to date on vaccines?</h4>
+      <input type="radio" name="vaccinated" value="true">Yes</input>
+      <input type="radio" name="vaccinated" value="false">No</input>
+      <h4>Is your dog friendly with other dogs?</h4>
+      <input type="radio" name="dog_friendly" value="true">Yes</input>
+      <input type="radio" name="dog_friendly" value="false">No</input>
+      <p><input type="submit" value="Submit"></input></p>
+    </form>
+  </body>
 </html>
