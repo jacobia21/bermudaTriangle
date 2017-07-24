@@ -29,24 +29,6 @@ li a:hover {
   float: right;
   padding: 14px 16px;
 }
-.login {
-  float: right;
-}
-.container {
-  display: flex;
-}
-.vertical {
-  display: inline-block;
-}
 h1{
   color: white;
-}
-h2{
-  color: white;
-  font-style: helvetica;
-}
-hr{
-  padding: 10px 10px;
-  background-color: #e85fa1;
-  display: inline-block;
 }
