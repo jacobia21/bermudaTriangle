@@ -35,6 +35,9 @@ li a:hover {
 .vertical {
   display: inline-block;
 }
+.login {
+  float: right;
+}
 h1{
   color: white;
 }
