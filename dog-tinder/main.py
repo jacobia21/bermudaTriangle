@@ -85,7 +85,7 @@ app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/discuss', DiscussionPage),
     ('/profile', ProfileHandler),
-    ('/profile/edit' EditProfile),
+    ('/profile/edit', EditProfile),
     ('/all_profiles', AllProfilesPage),
 
     ('/my_profile', MyProfile),
