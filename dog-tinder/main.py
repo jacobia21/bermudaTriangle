@@ -16,32 +16,50 @@
 #
 import jinja2
 import webapp2
+from google.appengine.api import users
 
 env = jinja2.Environment(loader = jinja2.FileSystemLoader("templates"))
 
+def getUserInfo(path):
+    cur_user = users.get_current_user()
+    log_url = ''
+    if cur_user:
+        log_url = users.create_logout_url(path)
+    else:
+        log_url = users.create_login_url(path)
+    return {
+        "log_url": log_url,
+        "user": cur_user
+    }
+
 class MainHandler(webapp2.RequestHandler):
     def get(self):
+        my_vars = getUserInfo('/')
         temp = env.get_template("homepage.html")
-        self.response.out.write(temp.render())
+        self.response.out.write(temp.render(my_vars))
 
 class DiscussionPage(webapp2.RequestHandler):
     def get(self):
+        my_vars = getUserInfo('/discuss')
         temp = env.get_template("discussion.html")
-        self.response.out.write(temp.render())
+        self.response.out.write(temp.render(my_vars))
 
 class ProfileHandler(webapp2.RequestHandler):
     def get(self):
+        my_vars = getUserInfo('/profile')
         temp = env.get_template("user_profile.html")
-        self.response.out.write(temp.render())
+        self.response.out.write(temp.render(my_vars))
 
 class UserProfile(webapp2.RequestHandler):
     def get(self):
+        my_vars = getUserInfo()
         self.redirect('/profile')
 
 class AllProfilesPage(webapp2.RequestHandler):
     def get(self):
+        my_vars = getUserInfo('/all_profiles')
         temp = env.get_template("all_profiles.html")
-        self.response.out.write(temp.render())
+        self.response.out.write(temp.render(my_vars))
 
 
 app = webapp2.WSGIApplication([
