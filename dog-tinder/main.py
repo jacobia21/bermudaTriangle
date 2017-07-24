@@ -52,7 +52,7 @@ class ProfileHandler(webapp2.RequestHandler):
 
 class UserProfile(webapp2.RequestHandler):
     def get(self):
-        my_vars = getUserInfo()
+        my_vars = getUserInfo('/profile')
         self.redirect('/profile')
 
 class AllProfilesPage(webapp2.RequestHandler):
