@@ -35,6 +35,9 @@ li a:hover {
 .vertical {
   display: inline-block;
 }
+.login {
+  float: right;
+}
 h1{
   color: black;
   text-shadow: -1px 0 #FFFFFF,0 1px #FFFFFF,1px 0 #FFFFFF,0 -1px #FFFFFF;
