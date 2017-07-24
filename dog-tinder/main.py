@@ -49,6 +49,6 @@ app = webapp2.WSGIApplication([
     ('/discuss', DiscussionPage),
     ('/profile', ProfileHandler),
 
-    ('/my_profile'), UserProfile),
-    ('/all_profiles'), AllProfilesPage),
+    ('/my_profile', UserProfile),
+    ('/all_profiles', AllProfilesPage),
 ], debug=True)
