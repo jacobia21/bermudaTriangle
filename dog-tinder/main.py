@@ -37,8 +37,8 @@ def getUserInfo(path):
     }
 
 class User(ndb.Model):
-    name: ndb.StringProperty()
-    
+    name = ndb.StringProperty()
+
 
 
 class MainHandler(webapp2.RequestHandler):
