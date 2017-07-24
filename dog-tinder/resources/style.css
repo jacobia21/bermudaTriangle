@@ -108,5 +108,10 @@ p{
   font-style: normal;
   font-variant: normal;
   font-weight: 200;
-  line-height: 15px;
+  line-height: 2px;
+}
+h6{
+  font-size: 12px;
+  font-style: normal;
+
 }
