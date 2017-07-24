@@ -14,7 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+import datetime
 import jinja2
+import logging
 import webapp2
 from google.appengine.api import users
 from google.appengine.ext import ndb
@@ -39,7 +41,11 @@ def getUserInfo(path):
 class User(ndb.Model):
     name = ndb.StringProperty()
 
-
+class DiscussPost(ndb.Model):
+    title = ndb.StringProperty()
+    content = ndb.StringProperty()
+    time = ndb.DateTimeProperty(auto_now_add=True)
+    user_key = ndb.KeyProperty(User)
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -50,6 +56,12 @@ class MainHandler(webapp2.RequestHandler):
 class DiscussionPage(webapp2.RequestHandler):
     def get(self):
         my_vars = getUserInfo('/discuss')
+
+        query = DiscussPost.query()
+        posts = query.fetch()
+        logging.info(posts)
+        my_vars['posts'] = posts
+
         temp = env.get_template("discussion.html")
         self.response.out.write(temp.render(my_vars))
 
@@ -80,6 +92,35 @@ class AllProfilesPage(webapp2.RequestHandler):
         temp = env.get_template("all_profiles.html")
         self.response.out.write(temp.render(my_vars))
 
+class DiscussPostMaker(webapp2.RequestHandler):
+    def post(self):
+        user_info = getUserInfo('/')
+        user = user_info['user']
+
+        if not user:
+            self.redirect('/discuss')
+
+        user_key = ndb.Key('User',user.nickname())
+        user_ent = user_key.get()
+        if not user_ent:
+            user_ent = User(
+                name = user.nickname().split('@')[0]
+            )
+        user_ent.key = user_key
+        user_ent.put()
+
+        discuss_key = ndb.Key('DiscussPost',self.request.get('title'))
+        discuss_post = discuss_key.get()
+        discuss_post = DiscussPost(
+            title = self.request.get("title"),
+            content = self.request.get("content"),
+            user_key = user_ent.key
+        )
+        discuss_post.key = discuss_key
+        discuss_post.put()
+        self.redirect('/discuss')
+
+
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
@@ -89,4 +130,5 @@ app = webapp2.WSGIApplication([
     ('/all_profiles', AllProfilesPage),
 
     ('/my_profile', MyProfile),
+    ('/discuss/makepost', DiscussPostMaker),
 ], debug=True)

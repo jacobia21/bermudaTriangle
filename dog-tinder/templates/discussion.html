@@ -34,10 +34,18 @@
       appropriate and avoid inappropriate language and comments.</h3>
       <h4>Make a Post</h4>
       <form method="post" action="/discuss/makepost">
-        <textarea rows="5" cols="40" placeholder="Let's Talk Dog!"></textarea></br>
+        <input type="text" name="title" placeholder="Title"/><br><br>
+        <textarea rows="5" cols="40" name="content" placeholder="Let's Talk Dog!"></textarea></br>
         <input type=submit value='Submit'/>
       </form>
-      
+
+      <h4>Posts</h4>
+      {% for post in posts %}
+      <h5>{{post.title}}</h5>
+      Posted: {{post.time}}
+      <p>{{post.content}}</p>
+      <br>
+      {% endfor %}
 
   </body>
 </html>
