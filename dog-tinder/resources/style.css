@@ -6,7 +6,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #e85fa1;
+    background-color: rgba(144,144,144,0.58);
 }
 
 li {
@@ -49,4 +49,5 @@ hr{
   padding: 10px 10px;
   background-color: #e85fa1;
   display: inline-block;
+
 }
