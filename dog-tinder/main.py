@@ -53,7 +53,7 @@ class ProfileHandler(webapp2.RequestHandler):
 class MyProfile(webapp2.RequestHandler):
     def get(self):
         my_vars = getUserInfo('/profile')
-        user = my_vars.user
+        user = my_vars['user']
         if user:
             self.redirect('/profile')
         else:
