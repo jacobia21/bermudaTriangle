@@ -9,16 +9,18 @@
     <h1>Dog Tinder</h1>
     <ul>
       <li><a href="/">Home</a></li>
-      <li><a href="/my_profile">My Profile</a></li>
       <li><a href="/all_profiles">Other Profiles</a></li>
-      <li><a href="/discuss"> Discussion</a></li>
-      <li class="login">
+      <li><a href="/discuss">Discussion</a></li>
+      <li class="headerRight">
         {% if user %}
         <a href="{{log_url}}">Logout</a>
         {% else %}
         <a href="{{log_url}}">Login</a>
         {% endif %}
       </li>
+      {% if user %}
+      <li class="headerRight"><a href="/my_profile">{{username}}</a></li>
+      {% endif %}
       <div class="searchBar">
         <input type="text" name="Search Bar"/>
         <input type="submit" value="Submit">
@@ -29,7 +31,7 @@
     <div class="container">
       <div class="vertical">
         <!--left side-->
-        <h2> Welcome Back {{user.nickname().split('@')[0]}}!</h2>
+        <h2> Welcome Back {{username}}!</h2>
         <img src ="resources/Insert-Photo-Here.jpg">
       </div>
       <hr width="1" size="2000">
