@@ -35,3 +35,8 @@ h1 {
 h2{
   color: white;
 }
+hr{
+  padding: 10px 10px;
+  background-color: #e85fa1;
+  display: inline-block;
+}
