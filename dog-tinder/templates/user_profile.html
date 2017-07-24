@@ -6,7 +6,7 @@
     <script type="text/javascript" src="resources/main.js"></script>
   </head>
   <body>
-    <h1>Dog Tinder</h1>
+    <h1>Canine Companions</h1>
     <ul>
       <li><a href="/">Home</a></li>
       <li><a href="/all_profiles">Other Profiles</a></li>
@@ -34,7 +34,7 @@
         <h2> Welcome Back {{name}}!</h2>
         <img src ="resources/Insert-Photo-Here.jpg">
         <h3>
-          Name:</br></br>
+          Name: </br></br>
           Age:</br></br>
           Breed:</br></br>
           Hometown: </br></br>
@@ -42,12 +42,17 @@
           Favorite Toy: </br></br>
           All About Me: </br></br>
           Friendly With Kids:</br></br>
-          Vaccines:
+          Vaccines: </br></br>
         </h3>
+        <h4>To make changes, click <a href="/profile/edit">here.</a></h4>
       </div>
       <div class="vertical leftEdge">
         <!--right side-->
         <h2> Dog Photos!</h2>
+        <h4>Here's your chance to show your cutest dog photos.</h4>
+        <form action="/action_page.php">
+            <input type="file" name="pic" accept="image/*">
+        </form>
       </div>
     </div>
   </body>

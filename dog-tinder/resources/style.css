@@ -7,6 +7,9 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color: rgba(144,144,144,0.58);
+    font-style: helvetica;
+    font-family: Consolas, monaco, monospace;
+    font-size: 16px;
 }
 
 li {
@@ -19,6 +22,7 @@ li a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+
 }
 
 li a:hover {
@@ -49,11 +53,23 @@ li a:hover {
 h1{
   color: black;
   text-shadow: -1px 0 #FFFFFF,0 1px #FFFFFF,1px 0 #FFFFFF,0 -1px #FFFFFF;
+  font-family: Consolas, monaco, monospace;
+	font-size: 26px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 26.4px;
 }
 h2{
   color: black;
   text-shadow: -1px 0 #FFFFFF,0 1px #FFFFFF,1px 0 #FFFFFF,0 -1px #FFFFFF;
   font-style: helvetica;
+  font-family: Consolas, monaco, monospace;
+	font-size: 20px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 20px
 }
 hr{
   padding: 10px 5px;
@@ -62,6 +78,24 @@ hr{
 }
 h3{
   color:white;
-  font-style: helvetica;
-  text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000
+  text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;
+  font-family: Consolas, monaco, monospace;
+	font-size: 18px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 15.4px;
+}
+h4{
+  color:white;
+  text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;
+  font-family: Consolas, monaco, monospace;
+	font-size: 18px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 15.4px;
+}
+h5{
+  font-size: 16px;
 }
