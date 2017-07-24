@@ -29,11 +29,12 @@ li a:hover {
   float: right;
   padding: 14px 16px;
 }
-h1 {
-  color: white;
+.login {
+  float: right;
 }
 h2{
   color: white;
+  font-style: helvetica;
 }
 hr{
   padding: 10px 10px;

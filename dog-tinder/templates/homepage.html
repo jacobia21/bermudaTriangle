@@ -12,6 +12,13 @@
       <li><a href="/my_profile">My Profile</a></li>
       <li><a href="/all_profiles">Other Profiles</a></li>
       <li><a href="/discuss"> Discussion</a></li>
+      <li class="login">
+        {% if user %}
+        <a href="{{log_url}}">Logout</a>
+        {% else %}
+        <a href="{{log_url}}">Login</a>
+        {% endif %}
+      </li>
       <div class = "searchBar">
         <input type= "text" name= "Search Bar"/>
         <input type="submit" value="Submit">
