@@ -59,6 +59,12 @@ class ProfileHandler(webapp2.RequestHandler):
         temp = env.get_template("user_profile.html")
         self.response.out.write(temp.render(my_vars))
 
+class EditProfile(webapp2.RequestHandler):
+    def get(self):
+        my_vars = getUserInfo('/')
+        temp = env.get_template("edit_profile.html")
+        self.response.out.write(temp.render(my_vars))
+
 class MyProfile(webapp2.RequestHandler):
     def get(self):
         my_vars = getUserInfo('/profile')
@@ -79,7 +85,8 @@ app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/discuss', DiscussionPage),
     ('/profile', ProfileHandler),
+    ('/profile/edit', EditProfile),
+    ('/all_profiles', AllProfilesPage),
 
     ('/my_profile', MyProfile),
-    ('/all_profiles', AllProfilesPage),
 ], debug=True)
