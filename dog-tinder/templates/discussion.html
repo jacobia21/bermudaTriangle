@@ -29,7 +29,7 @@
 
 
     <h2>Discussion Board</h2>
-    <h5>Talk with your fellow (DOG TINDER) users and share your questions, concerns, and
+    <h5>Talk with your fellow Canine Companions users and share your questions, concerns, and
       opinions about dogs in our interactive forum! Please keep all comments and forums
       appropriate and avoid inappropriate language and comments.</h5>
       <h5>Make a Post</h5>
@@ -41,8 +41,9 @@
 
       <h4>Posts</h4>
       {% for post in posts %}
-      <h5>{{post.title}}</h5>
-      Posted: {{post.time}}
+      <h5><strong>{{post.title}}</strong></h5>
+      <p><strong>{{post.user_key.get().name}}<strong></p>
+      <h6>Posted: {{post.time}}</h6>
       <p>{{post.content}}</p>
       <br>
       {% endfor %}
