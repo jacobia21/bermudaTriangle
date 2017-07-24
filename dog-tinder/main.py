@@ -46,7 +46,7 @@ class DiscussionPage(webapp2.RequestHandler):
 
 class ProfileHandler(webapp2.RequestHandler):
     def get(self):
-        my_vars = getUserInfo('/profile')
+        my_vars = getUserInfo('/')
         temp = env.get_template("user_profile.html")
         self.response.out.write(temp.render(my_vars))
 
