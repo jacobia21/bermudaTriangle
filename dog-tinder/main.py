@@ -17,6 +17,7 @@
 import jinja2
 import webapp2
 from google.appengine.api import users
+from google.appengine.ext import ndb
 
 env = jinja2.Environment(loader = jinja2.FileSystemLoader("templates"))
 
@@ -34,6 +35,11 @@ def getUserInfo(path):
         "user": cur_user,
         "username": name
     }
+
+class User(ndb.Model):
+    name: ndb.StringProperty()
+    
+
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
