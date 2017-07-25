@@ -144,7 +144,7 @@ class ProfileHandler(webapp2.RequestHandler):
             if profile.profile_pic:
                 pic = "data:image;base64," + binascii.b2a_base64(profile.profile_pic)
             else:
-                pic = "../resources/Insert-Photo-Here.jpg"
+                pic = "../resources/dog_404.png"
 
             my_vars['pic'] = pic
 
