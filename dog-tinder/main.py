@@ -73,6 +73,13 @@ class DiscussPost(ndb.Model):
     time = ndb.DateTimeProperty(auto_now_add=True)
     profile_key = ndb.KeyProperty(Profile)
 
+class Comment(ndb.Model):
+    content = ndb.StringProperty()
+    time = ndb.DateTimeProperty(auto_now_add=True)
+    profile_key = ndb.KeyProperty(Profile)
+    discuss_post_key = ndb.KeyProperty(DiscussPost)
+    pic_post_key = ''
+
 
 #basic page handler classes
 
@@ -92,6 +99,22 @@ class DiscussionPage(webapp2.RequestHandler):
 
         temp = env.get_template("discussion.html")
         self.response.out.write(temp.render(my_vars))
+
+class DiscussionPostHandler(webapp2.RequestHandler):
+    def get(self):
+        my_vars = getUserInfo('/')
+
+        post_key = ndb.Key(urlsafe=self.request.get('id'))
+        post = post_key.get()
+
+        if post:
+            post.key = post_key
+            my_vars['post'] = post
+
+            temp = env.get_template("discussion_post.html")
+            self.response.out.write(temp.render(my_vars))
+        else:
+            self.redirect('/discuss')
 
 class ProfileHandler(webapp2.RequestHandler):
     def get(self):
@@ -221,6 +244,7 @@ class SaveProfileChanges(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/discuss', DiscussionPage),
+    ('/discuss/post', DiscussionPostHandler),
     ('/profile', ProfileHandler),
     ('/profile/edit', EditProfile),
     ('/all_profiles', AllProfilesPage),

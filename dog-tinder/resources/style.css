@@ -36,6 +36,8 @@ li a:hover {
 
 .darkBox {
   background-color: rgba(144,144,144,0.58);
+  padding: 10px;
+  margin: 10px;
 }
 
 .flex {
