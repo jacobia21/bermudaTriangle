@@ -38,10 +38,12 @@
         <h2>{{profile.name}}'s dog profile</h2>
         {% endif %}
 
-
-        <input type='file' />
         <img id="myImg" src="#" />
-        <input type="submit" value="Submit">
+
+        <form method="post" action="/profile/upload_profile_pic" enctype="multipart/form-data">
+          <input type='file' name="profile_pic"/>
+          <input type="submit" value="Submit"/>
+        </form>
         <h3>
           Name: {{profile.dog_name}}</br></br>
           Age: {{profile.age}}</br></br>

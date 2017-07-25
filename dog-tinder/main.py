@@ -57,7 +57,6 @@ def requestSafely(page,property_name,default_value = '',backup_value = None):
 class Profile(ndb.Model):
     name = ndb.StringProperty()
     profile_pic = ndb.BlobProperty()
-    avatar_pic = ndb.BlobProperty()
     dog_name = ndb.StringProperty()
     age = ndb.StringProperty()
     breed = ndb.StringProperty()
@@ -253,14 +252,11 @@ class UploadPhotos(webapp2.RequestHandler):
         profile = profile_key.get()
 
         if profile:
-            profile = Profile(
-                name = user_info['username'],
-                profile_pic = user_info['profile_pic'],
-                )
-        profile.key = profile_key
-        profile.put()
+            profile.profile_pic = self.request.get('profile_pic')
+            profile.key = profile_key
+            profile.put()
 
-        self.redirect('/my_profile/upload')
+        self.redirect('/my_profile')
 
 
 app = webapp2.WSGIApplication([
@@ -274,5 +270,5 @@ app = webapp2.WSGIApplication([
 
     ('/discuss/makepost', DiscussPostMaker),
     ('/profile/submit_changes', SaveProfileChanges),
-    ('/my_profile/upload', UploadPhotos)
+    ('/profile/upload_profile_pic', UploadPhotos)
 ], debug=True)
