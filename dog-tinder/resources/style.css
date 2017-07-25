@@ -126,3 +126,13 @@ h6{
 img{
   max-height: 200px;
 }
+hr{
+  display: block;
+      margin-top: 0.3em;
+      margin-bottom: 0.3em;
+      margin-left: auto;
+      margin-right: auto;
+      border-style: inset;
+      border-width: 0.3px;
+      size: 8px;
+    }
