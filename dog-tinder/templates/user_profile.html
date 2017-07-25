@@ -38,7 +38,7 @@
         <h2>{{profile.name}}'s dog profile</h2>
         {% endif %}
 
-        <img id="myImg" src="#" />
+        <img id="myImg" src="{{pic}}" />
 
         <form method="post" action="/profile/upload_profile_pic" enctype="multipart/form-data">
           <input type='file' name="profile_pic"/>
