@@ -3,7 +3,7 @@
   <head>
     <title>User Profile</title>
     <link type="text/css" rel="stylesheet" href="resources/style.css">
-    <script type="text/javascript" src="resources/main.js"></script>
+    <script type="text/javascript" src="../resources/main.js"></script>
   </head>
   <body>
     <h1>Canine Companions</h1>
@@ -28,15 +28,20 @@
     </ul>
 
 
-    <div class="flex">
+    <div class="container">
       <div class="vertical rightBorder">
         <!--left side-->
+
         {% if profile.key == user_id %}
         <h2> Welcome back {{username}}!</h2>
         {% else %}
         <h2>{{profile.name}}'s dog profile</h2>
         {% endif %}
+
         <img src ="resources/Insert-Photo-Here.jpg">
+        <input type='file' />
+        <img id="myImg" src="#" />
+        <input type="submit" value="Submit">
         <h3>
           Name: {{profile.dog_name}}</br></br>
           Age: {{profile.age}}</br></br>
@@ -64,17 +69,16 @@
           Vaccinated: No
           {% endif %}
         </h3>
-        {% if profile.key == user_id %}
-        <h4><a href="/profile/edit">Edit Profile</a></h4>
-        {% endif %}
+        <h4>To make changes, click <a href="/profile/edit">here.</a></h4>
       </div>
       <div class="vertical leftEdge">
         <!--right side-->
         <h2> Dog Photos!</h2>
         <h4>Here's your chance to show your cutest dog photos.</h4>
-        <form action="/action_page.php">
+        <form action="/action_page.php" method= "post">
             <input type="file" name="pic" accept="image/*">
         </form>
+        <input type="submit" value="Submit">
       </div>
     </div>
 
