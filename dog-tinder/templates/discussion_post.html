@@ -37,6 +37,20 @@
     </div>
 
     <h3>Comments</h3>
-
+    {% if user %}
+    <form method="post" action="/discuss/send_comment?id={{post.key.urlsafe()}}&post_type=discuss">
+      <input type='text' name="content" placeholder="Leave a comment"/>
+      <input type='submit' value="send"/>
+    </form>
+    {% else %}
+    Login to add a comment!<br><br>
+    {% endif %}
+    {% for comment in comments %}
+    <div class="darkBox">
+      <h5>{{comment.profile_key.get().name}}</h5>
+      {{comment.content}}<br><br>
+      Posted: {{comment.time}}
+    </div>
+    {% endfor %}
   </body>
 </html>
