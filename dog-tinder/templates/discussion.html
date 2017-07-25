@@ -28,13 +28,13 @@
     </ul>
 
 
-    <h2>Discussion Board</h2>
+    <div class="box"><h2>Discussion Board</h2></div>
     <h5>Talk with your fellow Canine Companions users and share your questions, concerns, and
       opinions about dogs in our interactive forum! Please keep all comments and forums
       appropriate and avoid inappropriate language and comments.</h5>
 
       {% if user %}
-      <h5>Make a Post</h5>
+     <div class ="makea"><h5>Make a Post</h5></div>
       <form method="post" action="/discuss/makepost">
         <input type="text" name="title" placeholder="Title"/><br><br>
         <textarea rows="5" cols="40" name="content" placeholder="Let's Talk Dog!"></textarea></br>
@@ -44,7 +44,7 @@
       Login to post!<br><br>
       {% endif %}
 
-      <h4>Posts</h4>
+      <div class="posts"><h4>Posts</h4></div>
       {% for post in posts %}
       <div class="darkBox">
         <h5><a href="/discuss/post?id={{post.key.urlsafe()}}"><strong>{{post.title}}</strong></a></h5>
