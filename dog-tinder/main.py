@@ -51,7 +51,7 @@ def requestSafely(page,property_name,default_value = '',backup_value = None):
 
 #data model classes
 
-class User(ndb.Model):
+class Profile(ndb.Model):
     name = ndb.StringProperty()
     dog_name = ndb.StringProperty()
     age = ndb.StringProperty()
@@ -67,7 +67,7 @@ class DiscussPost(ndb.Model):
     title = ndb.StringProperty()
     content = ndb.StringProperty()
     time = ndb.DateTimeProperty(auto_now_add=True)
-    user_key = ndb.KeyProperty(User)
+    user_key = ndb.KeyProperty(Profile)
 
 
 #basic page handler classes
@@ -95,7 +95,7 @@ class ProfileHandler(webapp2.RequestHandler):
         my_vars = getUserInfo('/')
         user = my_vars['user']
 
-        profile = ndb.Key('User',user.nickname()).get()
+        profile = ndb.Key('Profile',user.nickname()).get()
         my_vars['profile'] = profile
 
         temp = env.get_template("user_profile.html")
@@ -133,21 +133,21 @@ class DiscussPostMaker(webapp2.RequestHandler):
         if not user:
             self.redirect('/discuss')
 
-        user_key = ndb.Key('User',user.nickname())
-        user_ent = user_key.get()
+        profile_key = ndb.Key('Profile',user.nickname())
+        profile = profile_key.get()
         if not user_ent:
-            user_ent = User(
+            profile = Profile(
                 name = user_info['username']
             )
-        user_ent.key = user_key
-        user_ent.put()
+        profile.key = profile_key
+        profile.put()
 
         discuss_key = ndb.Key('DiscussPost',self.request.get('title')+str(datetime.datetime.now()))
         discuss_post = discuss_key.get()
         discuss_post = DiscussPost(
             title = self.request.get("title"),
             content = self.request.get("content"),
-            user_key = user_ent.key
+            user_key = profile.key
         )
         discuss_post.key = discuss_key
         discuss_post.put()
@@ -161,26 +161,26 @@ class SaveProfileChanges(webapp2.RequestHandler):
         if not user:
             self.redirect('/')
 
-        user_key = ndb.Key('User',user.nickname())
-        user_ent = user_key.get()
+        profile_key = ndb.Key('Profile',user.nickname())
+        profile = profile_key.get()
 
         logging.info(self.request.get('foo'))
-        logging.info(requestSafely(self,'foo'),'',user_ent)
-        if user_ent:
-            user_ent = User(
+        logging.info(requestSafely(self,'foo'),'',profile)
+        if profile:
+            profile = Profile(
                 name = user_info['username'],
-                dog_name = requestSafely(self,'name','',user_ent.dog_name),
-                age = requestSafely(self,'age','',user_ent.age),
-                breed = requestSafely(self,'breed','',user_ent.breed),
-                hometown = requestSafely(self,'town','',user_ent.hometown),
-                active = requestSafely(self,'active','false',user_ent.active)=='true',
-                fav_toy = requestSafely(self,'fav_toy','',user_ent.fav_toy),
-                bio = requestSafely(self,'bio','',user_ent.bio),
-                kid_friendly = requestSafely(self,'kid_friendly','false',user_ent.kid_friendly)=='true',
-                vaccinated = requestSafely(self,'vaccinated','false',user_ent.vaccinated)=='true'
+                dog_name = requestSafely(self,'name','',profile.dog_name),
+                age = requestSafely(self,'age','',profile.age),
+                breed = requestSafely(self,'breed','',profile.breed),
+                hometown = requestSafely(self,'town','',profile.hometown),
+                active = requestSafely(self,'active','false',profile.active)=='true',
+                fav_toy = requestSafely(self,'fav_toy','',profile.fav_toy),
+                bio = requestSafely(self,'bio','',profile.bio),
+                kid_friendly = requestSafely(self,'kid_friendly','false',profile.kid_friendly)=='true',
+                vaccinated = requestSafely(self,'vaccinated','false',profile.vaccinated)=='true'
             )
         else:
-            user_ent = User(
+            profile = Profile(
                 name = user_info['username'],
                 dog_name = requestSafely(self,'name'),
                 age = requestSafely(self,'age'),
@@ -192,8 +192,8 @@ class SaveProfileChanges(webapp2.RequestHandler):
                 kid_friendly = requestSafely(self,'kid_friendly','false')=='true',
                 vaccinated = requestSafely(self,'vaccinated','false')=='true'
             )
-        user_ent.key = user_key
-        user_ent.put()
+        profile.key = profile_key
+        profile.put()
 
         self.redirect('/my_profile')
 
