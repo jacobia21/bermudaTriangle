@@ -31,7 +31,11 @@
     <div class="container">
       <div class="vertical rightBorder">
         <!--left side-->
-        <h2> Welcome Back {{username}}!</h2>
+        {% if profile.key == user_id %}
+        <h2> Welcome back {{username}}!</h2>
+        {% else %}
+        <h2>{{profile.name}}'s dog profile</h2>
+        {% endif %}
         <img src ="resources/Insert-Photo-Here.jpg">
         <h3>
           Name: {{profile.dog_name}}</br></br>
@@ -60,7 +64,9 @@
           Vaccinated: No
           {% endif %}
         </h3>
-        <h4>To make changes, click <a href="/profile/edit">here.</a></h4>
+        {% if profile.key == user_id %}
+        <h4><a href="/profile/edit">Edit Profile</a></h4>
+        {% endif %}
       </div>
       <div class="vertical leftEdge">
         <!--right side-->
