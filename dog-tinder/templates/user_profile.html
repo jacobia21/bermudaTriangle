@@ -39,7 +39,7 @@
         {% else %}
         <h2>{{profile.name}}'s dog profile</h2>
         {% endif %}
-        
+
         <img id="myImg" src="{{pic}}" />
 
         <form method="post" action="/profile/upload_profile_pic" enctype="multipart/form-data">
@@ -79,10 +79,10 @@
         <!--right side-->
         <h2> Dog Photos!</h2>
         <h4>Here's your chance to show your cutest dog photos.</h4>
-        <form action="/action_page.php" method= "post">
+        <form method= "post" action="/upload_pics">
             <input type="file" name="pic" accept="image/*">
+            <input type="submit" value="Submit">
         </form>
-        <input type="submit" value="Submit">
       </div>
     </div>
 
