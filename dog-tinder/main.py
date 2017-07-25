@@ -57,6 +57,7 @@ def requestSafely(page,property_name,default_value = '',backup_value = None):
 class Profile(ndb.Model):
     name = ndb.StringProperty()
     profile_pic = ndb.BlobProperty()
+    avatar_pic = ndb.BlobProperty()
     dog_name = ndb.StringProperty()
     age = ndb.StringProperty()
     breed = ndb.StringProperty()
