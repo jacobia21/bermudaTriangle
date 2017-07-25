@@ -29,14 +29,18 @@
 
 
     <div class="box"><h2>Discussion Board</h2></div>
-    <h3> {{post.title}}</h3>
-    <strong>{{post.profile_key.get().name}}<strong>
-    Posted: {{post.time}}
     <div class="darkBox">
-      {{post.content}}
+    <div class="title"><h3><strong> {{post.title}}<strong></h3></div>
+
+    {{post.profile_key.get().name}}
+      <br>
+    Posted: {{post.time}}
+    <br>
+    <br>
+    {{post.content}}
     </div>
-
+    <div class="comments">
     <h3>Comments</h3>
-
+    </div>
   </body>
 </html>
