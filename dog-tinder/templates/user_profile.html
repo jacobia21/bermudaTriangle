@@ -32,8 +32,6 @@
       <div class="vertical rightBorder">
         <!--left side-->
 
-        <h2> Welcome Back {{username}}!</h2>
-
         {% if profile.key == user_id %}
         <h2> Welcome back {{username}}!</h2>
         {% else %}
@@ -77,13 +75,10 @@
         <!--right side-->
         <h2> Dog Photos!</h2>
         <h4>Here's your chance to show your cutest dog photos.</h4>
-<<<<<<< HEAD
         <form action="/action_page.php" method= "post">
-=======
-        <form action="/action_page.php">
->>>>>>> 21638f3bb39dd1f9c7d2c6c93137c6a336e5b31e
             <input type="file" name="pic" accept="image/*">
         </form>
+        <input type="submit" value="Submit">
       </div>
     </div>
 
