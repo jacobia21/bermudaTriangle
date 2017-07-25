@@ -57,7 +57,7 @@ class DiscussionPage(webapp2.RequestHandler):
     def get(self):
         my_vars = getUserInfo('/discuss')
 
-        query = DiscussPost.query()
+        query = DiscussPost.query().order(-DiscussPost.time)
         posts = query.fetch()
         logging.info(posts)
         my_vars['posts'] = posts
@@ -104,12 +104,12 @@ class DiscussPostMaker(webapp2.RequestHandler):
         user_ent = user_key.get()
         if not user_ent:
             user_ent = User(
-                name = user.nickname().split('@')[0]
+                name = user_info['username']
             )
         user_ent.key = user_key
         user_ent.put()
 
-        discuss_key = ndb.Key('DiscussPost',self.request.get('title'))
+        discuss_key = ndb.Key('DiscussPost',self.request.get('title')+str(datetime.datetime.now()))
         discuss_post = discuss_key.get()
         discuss_post = DiscussPost(
             title = self.request.get("title"),
