@@ -43,7 +43,7 @@
       {% for post in posts %}
       <h5><strong>{{post.title}}</strong></h5>
       <p><strong>{{post.user_key.get().name}}<strong></p>
-      <h6>Posted: {{post.time}}</h6>
+      <p>Posted: {{post.time}}</p>
       <p>{{post.content}}</p>
       <br>
       {% endfor %}
