@@ -44,11 +44,12 @@
 
       <h4>Posts</h4>
       {% for post in posts %}
-      <h5><strong>{{post.title}}</strong></h5>
-      <p><strong>{{post.profile_key.get().name}}<strong></p>
-      <p>Posted: {{post.time}}</p>
-      <p>{{post.content}}</p>
-      <br>
+      <div class="darkBox">
+        <h5><strong>{{post.title}}</strong></h5>
+        <p><strong>{{post.profile_key.get().name}}<strong></p>
+        <p>Posted: {{post.time}}</p>
+        <p>{{post.content}}</p>
+      </div>
       {% endfor %}
 
 
