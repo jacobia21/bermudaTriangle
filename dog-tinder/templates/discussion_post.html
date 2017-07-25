@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href= "../resources/style.css"/>
+    <script type="text/javascript" src="../resources/main.js"></script>
+  </head>
+  <title>Discussion</title>
+  <body>
+    <h1>Canine Companions</h1>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/all_profiles">Other Profiles</a></li>
+      <li><a href="/discuss">Discussion</a></li>
+      <li class="headerRight">
+        {% if user %}
+        <a href="{{log_url}}">Logout</a>
+        {% else %}
+        <a href="{{log_url}}">Login</a>
+        {% endif %}
+      </li>
+      {% if user %}
+      <li class="headerRight"><a href="/my_profile">{{username}}</a></li>
+      {% endif %}
+      <div class="searchBar">
+        <input type="text" name="Search Bar"/>
+        <input type="submit" value="Submit">
+      </div>
+    </ul>
+
+
+    <h2>Discussion Board</h2>
+    <h3>{{post.title}}</h3>
+    <strong>{{post.profile_key.get().name}}<strong>
+    Posted: {{post.time}}
+    <div class="darkBox">
+      {{post.content}}
+    </div>
+
+    <h3>Comments</h3>
+
+  </body>
+</html>
