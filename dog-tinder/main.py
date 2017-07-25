@@ -38,14 +38,39 @@ def getUserInfo(path):
         "username": name
     }
 
+def requestSafely(page,property_name,default_value = '',backup_value = None):
+    request = page.request.get(str(property_name))
+    if request:
+        return request
+    else:
+        if backup_value:
+            return backup_value
+        else:
+            return default_value
+
+
+#data model classes
+
 class User(ndb.Model):
     name = ndb.StringProperty()
+    dog_name = ndb.StringProperty()
+    age = ndb.StringProperty()
+    breed = ndb.StringProperty()
+    hometown = ndb.StringProperty()
+    active = ndb.BooleanProperty()
+    fav_toy = ndb.StringProperty()
+    bio = ndb.StringProperty()
+    kid_friendly = ndb.BooleanProperty()
+    vaccinated = ndb.BooleanProperty()
 
 class DiscussPost(ndb.Model):
     title = ndb.StringProperty()
     content = ndb.StringProperty()
     time = ndb.DateTimeProperty(auto_now_add=True)
     user_key = ndb.KeyProperty(User)
+
+
+#basic page handler classes
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -92,6 +117,9 @@ class AllProfilesPage(webapp2.RequestHandler):
         temp = env.get_template("all_profiles.html")
         self.response.out.write(temp.render(my_vars))
 
+
+#Datastore page handler classes
+
 class DiscussPostMaker(webapp2.RequestHandler):
     def post(self):
         user_info = getUserInfo('/')
@@ -130,9 +158,34 @@ class SaveProfileChanges(webapp2.RequestHandler):
 
         user_key = ndb.Key('User',user.nickname())
         user_ent = user_key.get()
-        if not user_ent:
+
+        logging.info(self.request.get('foo'))
+        logging.info(requestSafely(self,'foo'),'',user_ent)
+        if user_ent:
             user_ent = User(
-                name = user.nickname().split('@')[0]
+                name = user_info['username'],
+                dog_name = requestSafely(self,'name','',user_ent.dog_name),
+                age = requestSafely(self,'age','',user_ent.age),
+                breed = requestSafely(self,'breed','',user_ent.breed),
+                hometown = requestSafely(self,'town','',user_ent.hometown),
+                active = requestSafely(self,'active','false',user_ent.active)=='true',
+                fav_toy = requestSafely(self,'fav_toy','',user_ent.fav_toy),
+                bio = requestSafely(self,'bio','',user_ent.bio),
+                kid_friendly = requestSafely(self,'kid_friendly','false',user_ent.kid_friendly)=='true',
+                vaccinated = requestSafely(self,'vaccinated','false',user_ent.vaccinated)=='true'
+            )
+        else:
+            user_ent = User(
+                name = user_info['username'],
+                dog_name = requestSafely(self,'name'),
+                age = requestSafely(self,'age'),
+                breed = requestSafely(self,'breed'),
+                hometown = requestSafely(self,'hometown'),
+                active = requestSafely(self,'active','false')=='true',
+                fav_toy = requestSafely(self,'fav_toy'),
+                bio = requestSafely(self,'bio'),
+                kid_friendly = requestSafely(self,'kid_friendly','false')=='true',
+                vaccinated = requestSafely(self,'vaccinated','false')=='true'
             )
         user_ent.key = user_key
         user_ent.put()
@@ -146,8 +199,8 @@ app = webapp2.WSGIApplication([
     ('/profile', ProfileHandler),
     ('/profile/edit', EditProfile),
     ('/all_profiles', AllProfilesPage),
-
     ('/my_profile', MyProfile),
+
     ('/discuss/makepost', DiscussPostMaker),
     ('/profile/submit_changes', SaveProfileChanges),
 ], debug=True)
