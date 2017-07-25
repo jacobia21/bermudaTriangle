@@ -18,6 +18,7 @@ import datetime
 import jinja2
 import logging
 import webapp2
+import binascii
 from google.appengine.api import users
 from google.appengine.ext import ndb
 
@@ -127,6 +128,13 @@ class ProfileHandler(webapp2.RequestHandler):
         if profile:
             profile.key = profile_key
             my_vars['profile'] = profile
+
+            if profile.profile_pic:
+                pic = "data:image;base64, "+binascii.b2a_base64(profile.profile_pic)
+            else:
+                pic = "../resources/Insert-Photo-Here.jpg"
+
+            my_vars['pic'] = pic
 
             temp = env.get_template("user_profile.html")
             self.response.out.write(temp.render(my_vars))
