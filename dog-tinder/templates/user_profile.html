@@ -34,15 +34,31 @@
         <h2> Welcome Back {{name}}!</h2>
         <img src ="resources/Insert-Photo-Here.jpg">
         <h3>
-          Name: </br></br>
-          Age:</br></br>
-          Breed:</br></br>
-          Hometown: </br></br>
-          Active or Lazy:</br></br>
-          Favorite Toy: </br></br>
-          All About Me: </br></br>
-          Friendly With Kids:</br></br>
-          Vaccines: </br></br>
+          Name: {{profile.dog_name}}</br></br>
+          Age: {{profile.age}}</br></br>
+          Breed: {{profile.breed}}</br></br>
+          Hometown: {{profile.hometown}}</br></br>
+
+          {% if profile.active %}
+          Active or Lazy: Active
+          {% else %}
+          Active or Lazy: Lazy
+          {% endif %}<br><br>
+
+          Favorite Toy: {{profile.fav_toy}}</br></br>
+          Dog's Bio: {{profile.bio}}</br></br>
+
+          {% if profile.kid_friendly %}
+          Friendly with kids: Yes
+          {% else %}
+          Friendly with kids: No
+          {% endif %}<br><br>
+
+          {% if profile.vaccinated %}
+          Vaccinated: Yes
+          {% else %}
+          Vaccinated: No
+          {% endif %}
         </h3>
         <h4>To make changes, click <a href="/profile/edit">here.</a></h4>
       </div>
