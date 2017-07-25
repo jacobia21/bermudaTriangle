@@ -56,6 +56,7 @@ def requestSafely(page,property_name,default_value = '',backup_value = None):
 
 class Profile(ndb.Model):
     name = ndb.StringProperty()
+    profile_pic = ndb.BlobProperty()
     dog_name = ndb.StringProperty()
     age = ndb.StringProperty()
     breed = ndb.StringProperty()
@@ -185,8 +186,6 @@ class SaveProfileChanges(webapp2.RequestHandler):
         profile_key = ndb.Key('Profile',user.nickname())
         profile = profile_key.get()
 
-        logging.info(self.request.get('foo'))
-        logging.info(requestSafely(self,'foo'),'',profile)
         if profile:
             profile = Profile(
                 name = user_info['username'],
