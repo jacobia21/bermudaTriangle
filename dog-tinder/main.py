@@ -84,9 +84,9 @@ class DiscussPost(ndb.Model):
 class Comment(ndb.Model):
     content = ndb.StringProperty()
     time = ndb.DateTimeProperty(auto_now_add=True)
-    profile_key = ndb.KeyProperty(Profile)
     discuss_post_key = ndb.KeyProperty(DiscussPost)
     pic_post_key = ''
+    profile_key = ndb.KeyProperty(Profile)
 
 
 #basic page handler classes
@@ -110,14 +110,19 @@ class DiscussionPage(webapp2.RequestHandler):
 
 class DiscussionPostHandler(webapp2.RequestHandler):
     def get(self):
-        my_vars = get_user_info('/')
+        my_vars = get_user_info('/discuss/post?id='+self.request.get('id'))
 
         post_key = ndb.Key(urlsafe=self.request.get('id'))
         post = post_key.get()
 
         if post:
             post.key = post_key
+
+            query = Comment.query(Comment.discuss_post_key == post_key).order(-Comment.time)
+            comments = query.fetch()
+
             my_vars['post'] = post
+            my_vars['comments'] = comments
 
             temp = env.get_template("discussion_post.html")
             self.response.out.write(temp.render(my_vars))
@@ -126,7 +131,7 @@ class DiscussionPostHandler(webapp2.RequestHandler):
 
 class ProfileHandler(webapp2.RequestHandler):
     def get(self):
-        my_vars = get_user_info('/')
+        my_vars = get_user_info('/all_profiles')
         user = my_vars['user']
 
         profile_key = ndb.Key(urlsafe=self.request.get('id'))
@@ -137,9 +142,9 @@ class ProfileHandler(webapp2.RequestHandler):
             my_vars['profile'] = profile
 
             if profile.profile_pic:
-                pic = "data:image;base64, "+binascii.b2a_base64(profile.profile_pic)
+                pic = "data:image;base64," + binascii.b2a_base64(profile.profile_pic)
             else:
-                pic = "../resources/Insert-Photo-Here.jpg"
+                pic = "../resources/dog_404.png"
 
             my_vars['pic'] = pic
 
@@ -213,6 +218,46 @@ class DiscussPostMaker(webapp2.RequestHandler):
         discuss_post.put()
         self.redirect('/discuss')
 
+class CommentMaker(webapp2.RequestHandler):
+    def post(self):
+        user_info = get_user_info('/')
+        user = user_info['user']
+
+        profile_key = ndb.Key('Profile',user.nickname())
+        profile = profile_key.get()
+        if not profile:
+            profile = Profile(
+                name = user_info['username']
+            )
+        profile.key = profile_key
+        profile.put()
+
+        post_key = ndb.Key(urlsafe=self.request.get('id'))
+        post = post_key.get()
+
+        post_type = self.request.get('post_type')
+
+        if not post or not user:
+            if post_type=='discuss':
+                self.redirect('/discuss')
+            else:
+                self.redirect('/')
+
+        comment_key = ndb.Key('Comment',self.request.get('content')+str(datetime.datetime.now()))
+        comment = comment_key.get()
+        comment = Comment(
+            content = self.request.get('content'),
+            profile_key = profile.key
+        )
+        if post_type == "discuss":
+            comment.discuss_post_key = post_key
+        comment.key = comment_key
+        comment.put()
+        if post_type == "discuss":
+            self.redirect('/discuss/post?id='+self.request.get('id'))
+        else:
+            self.redirect('/')
+
 class SaveProfileChanges(webapp2.RequestHandler):
     def post(self):
         user_info = get_user_info('/')
@@ -284,6 +329,8 @@ app = webapp2.WSGIApplication([
     ('/my_profile', MyProfile),
 
     ('/discuss/makepost', DiscussPostMaker),
+    ('/discuss/send_comment', CommentMaker),
+
     ('/profile/submit_changes', SaveProfileChanges),
     ('/profile/upload_profile_pic', UploadPhotos)
 ], debug=True)

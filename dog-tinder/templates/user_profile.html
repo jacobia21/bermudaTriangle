@@ -40,10 +40,13 @@
 
         <img id="myImg" src="{{pic}}" />
 
+        {% if profile.key == user_id %}
         <form method="post" action="/profile/upload_profile_pic" enctype="multipart/form-data">
           <input type='file' name="profile_pic"/>
           <input type="submit" value="Submit"/>
         </form>
+        {% endif %}
+
         <h3>
           Name: {{profile.dog_name}}</br></br>
           Age: {{profile.age}}</br></br>
@@ -71,7 +74,9 @@
           Vaccinated: No
           {% endif %}
         </h3>
-        <h4>To make changes, click <a href="/profile/edit">here.</a></h4>
+        {% if profile.key == user_id%}
+        <h4><a href="/profile/edit">Edit Profile</a></h4>
+        {% endif %}
       </div>
       <div class="vertical leftEdge">
         <!--right side-->
