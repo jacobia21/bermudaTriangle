@@ -29,13 +29,16 @@ def getUserInfo(path):
     if cur_user:
         log_url = users.create_logout_url(path)
         name = cur_user.nickname().split('@')[0]
+        user_id = ndb.Key('Profile',cur_user.nickname())
     else:
         log_url = users.create_login_url(path)
         name = 'none'
+        user_id = 'none'
     return {
         "log_url": log_url,
         "user": cur_user,
-        "username": name
+        "username": name,
+        "user_id": user_id
     }
 
 def requestSafely(page,property_name,default_value = '',backup_value = None):
@@ -53,6 +56,7 @@ def requestSafely(page,property_name,default_value = '',backup_value = None):
 
 class Profile(ndb.Model):
     name = ndb.StringProperty()
+    profile_pic = ndb.BlobProperty()
     dog_name = ndb.StringProperty()
     age = ndb.StringProperty()
     breed = ndb.StringProperty()
@@ -84,7 +88,6 @@ class DiscussionPage(webapp2.RequestHandler):
 
         query = DiscussPost.query().order(-DiscussPost.time)
         posts = query.fetch()
-        logging.info(posts)
         my_vars['posts'] = posts
 
         temp = env.get_template("discussion.html")
@@ -95,11 +98,17 @@ class ProfileHandler(webapp2.RequestHandler):
         my_vars = getUserInfo('/')
         user = my_vars['user']
 
-        profile = ndb.Key('Profile',user.nickname()).get()
-        my_vars['profile'] = profile
+        profile_key = ndb.Key(urlsafe=self.request.get('id'))
+        profile = profile_key.get()
 
-        temp = env.get_template("user_profile.html")
-        self.response.out.write(temp.render(my_vars))
+        if profile:
+            profile.key = profile_key
+            my_vars['profile'] = profile
+
+            temp = env.get_template("user_profile.html")
+            self.response.out.write(temp.render(my_vars))
+        else:
+            self.redirect('/edit_profile')
 
 class EditProfile(webapp2.RequestHandler):
     def get(self):
@@ -112,13 +121,26 @@ class MyProfile(webapp2.RequestHandler):
         my_vars = getUserInfo('/profile')
         user = my_vars['user']
         if user:
-            self.redirect('/profile')
+            profile_key = ndb.Key('Profile',user.nickname())
+            profile = profile_key.get()
+            if not profile:
+                profile = Profile(
+                    name = user.nickname()
+                )
+            profile.key = profile_key
+            profile.put()
+            self.redirect('/profile?id='+profile_key.urlsafe())
         else:
             self.redirect('/')
 
 class AllProfilesPage(webapp2.RequestHandler):
     def get(self):
         my_vars = getUserInfo('/all_profiles')
+
+        query = Profile.query()
+        profiles = query.fetch()
+        my_vars['profiles'] = profiles
+
         temp = env.get_template("all_profiles.html")
         self.response.out.write(temp.render(my_vars))
 
@@ -164,8 +186,6 @@ class SaveProfileChanges(webapp2.RequestHandler):
         profile_key = ndb.Key('Profile',user.nickname())
         profile = profile_key.get()
 
-        logging.info(self.request.get('foo'))
-        logging.info(requestSafely(self,'foo'),'',profile)
         if profile:
             profile = Profile(
                 name = user_info['username'],

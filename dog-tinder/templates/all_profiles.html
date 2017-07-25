@@ -27,5 +27,12 @@
       </ul>
 
 
+      {% for profile in profiles %}
+      <div class="darkBox">
+        <h3>Dog: <a href="/profile?id={{profile.key.urlsafe()}}">{{profile.dog_name}}</a> </h3>
+        <h4>{{profile.name}}</h4>
+      </div>
+      {% endfor %}
+
     </body>
 </html>

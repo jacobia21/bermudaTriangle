@@ -33,7 +33,12 @@ li a:hover {
   float: right;
   padding: 14px 16px;
 }
-.container {
+
+.darkBox {
+  background-color: rgba(144,144,144,0.58);
+}
+
+.flex {
   display: flex;
 }
 .vertical {
@@ -84,7 +89,7 @@ h3{
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 500;
-	line-height: 15.4px;
+	/*line-height: 15.4px;*/
 }
 h4{
   color:white;
@@ -94,7 +99,7 @@ h4{
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 500;
-	line-height: 15.4px;
+	/*line-height: 15.4px;*/
 }
 h5{
   font-size: 18px;
@@ -108,7 +113,7 @@ p{
   font-style: normal;
   font-variant: normal;
   font-weight: 200;
-  line-height: 2px;
+  /*line-height: 2px;*/
 }
 h6{
   font-size: 25px;
