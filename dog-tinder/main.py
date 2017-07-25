@@ -67,7 +67,7 @@ class DiscussPost(ndb.Model):
     title = ndb.StringProperty()
     content = ndb.StringProperty()
     time = ndb.DateTimeProperty(auto_now_add=True)
-    user_key = ndb.KeyProperty(Profile)
+    profile_key = ndb.KeyProperty(Profile)
 
 
 #basic page handler classes
@@ -135,7 +135,7 @@ class DiscussPostMaker(webapp2.RequestHandler):
 
         profile_key = ndb.Key('Profile',user.nickname())
         profile = profile_key.get()
-        if not user_ent:
+        if not profile:
             profile = Profile(
                 name = user_info['username']
             )
@@ -147,7 +147,7 @@ class DiscussPostMaker(webapp2.RequestHandler):
         discuss_post = DiscussPost(
             title = self.request.get("title"),
             content = self.request.get("content"),
-            user_key = profile.key
+            profile_key = profile.key
         )
         discuss_post.key = discuss_key
         discuss_post.put()
