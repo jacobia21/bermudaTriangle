@@ -189,14 +189,14 @@ img{
   height: 30px;
   border-width: thick;
   position: absolute;
-  top:495px;
+  top:415px;
   right: 273px;
 }
 .editNewsletter input[type=submit]{
   position: absolute;
   right: 273px;
-  top: 495px;
-  height: 50px;
+  top: 415px;
+  height: 40px;
   width:75px;
   background-color: black;
   color: silver;
