@@ -70,9 +70,8 @@ h1{
 h2{
   color: black;
   text-shadow: -1px 0 #FFFFFF,0 1px #FFFFFF,1px 0 #FFFFFF,0 -1px #FFFFFF;
-  font-style: helvetica;
-  font-family: Consolas, monaco, monospace;
-	font-size: 20px;
+  font-family: monaco, Consolas, "Lucida Console", monospace;
+	font-size: 24px;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 500;
@@ -81,14 +80,15 @@ h2{
 h3{
   color:white;
   text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;
-  font-family: Consolas, monaco, monospace;
-	font-size: 18px;
+  font-family: monaco, Consolas, "Lucida Console", monospace;
+	font-size: 22px;
 	font-style: normal;
 	font-variant: normal;
-	font-weight: 500;
+	font-weight: 300;
 	/*line-height: 15.4px;*/
 }
 h4{
+  font-family: monaco, Consolas, "Lucida Console", monospace;
   font-size: 20px;
   font-weight: 400;
   font-variant: normal;
@@ -96,22 +96,26 @@ h4{
 
 }
 h5{
-  font-size: 18px;
+  font-family: monaco, Consolas, "Lucida Console", monospace;
+  font-size: 16px;
   font-style: normal;
-  font-variant: normal;
-  font-weight: 100;
+  font-weight: 600;
   line-height: 14px;
 }
 
 h6{
-  font-size: 16px;
-  font-style: normal;
+  font-family: monaco, Consolas, "Lucida Console", monospace;
+  font-size: 14px;
+  font-style: italic;
   font-weight: normal;
+  line-height: 1.2;
+
 
 }
 
 p{
-  font-size: 17px;
+  font-family: monaco, Consolas, "Lucida Console", monospace;
+  font-size: 15px;
   font-style: normal;
   font-variant: normal;
   font-weight: 200;
@@ -213,4 +217,9 @@ input h6{
 }
 .center{
   text-align: center;
+}
+
+.topmargin {
+  margin-top: 15px;
+  margin-bottom: 10px;
 }

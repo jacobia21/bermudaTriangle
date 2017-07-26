@@ -30,11 +30,9 @@
 
     <div class="lightBox center margin"><h2>Discussion Board</h2></div>
     <div class="lightBox margin">
-      <h3><strong> {{post.title}}<strong></h3>
-
-      {{post.profile_key.get().name}}
-        <br>
-      Posted: {{post.time}}
+      <h4><strong> {{post.title}}<strong></h4>
+      <i><strong>{{post.profile_key.get().name}}<strong></i>
+      <i>Posted: {{post.time}}</i>
       <br>
       <br>
       {{post.content}}
@@ -52,9 +50,9 @@
     </div>
     {% for comment in comments %}
     <div class="lightBox margin">
-      <h5>{{comment.profile_key.get().name}}</h5>
-      {{comment.content}}<br><br>
-      Posted: {{comment.time}}
+      <i><strong>{{comment.profile_key.get().name}}<strong></i>
+      <p>{{comment.content}}</p>
+      <i>Posted: {{comment.time}}</i>
     </div>
     {% endfor %}
   </body>
