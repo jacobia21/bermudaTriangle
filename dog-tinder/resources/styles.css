@@ -124,16 +124,20 @@ p{
   /*line-height: 2px;*/
 }
 
+.container {
+  border: 5px solid #F7CB15;
+  border-radius: 25px;
+  padding: 10px;
+  margin: 25px 5px;
+}
+
 .dogOfWeek{
-    width: 300px;
-    border: 5px solid #F7CB15;
-    padding: 10px;
-    margin: 25px 5px;
-    text-align: center;
-    padding-bottom: 0px;
-    border-radius: 25px;
     max-width: 300px;
     width: 400px;
+}
+
+.fullWidth {
+  width: 100%;
 }
 
 img{
@@ -184,16 +188,11 @@ img{
 }
 .newsletter{
   width: 1000px;
-  border: 5px solid #F7CB15;
-  padding: 10px;
-  margin: 25px 5px;
-  text-align: center;
   background-image: url(/resources/heart.png);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
   background-color: white;
-  border-radius: 25px;
 
 }
 
@@ -222,14 +221,6 @@ input h6{
   margin-bottom: 10px;
 }
 
-.photos{
-  width: 100%;
-  border: 5px solid #F7CB15;
-  border-radius: 25px;
-  padding: 10px;
-  margin: 25px 5px;
-  text-align: center;
-}
 
 .white {
   background-color: white;

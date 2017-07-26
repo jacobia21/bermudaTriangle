@@ -151,7 +151,7 @@ class ProfileHandler(webapp2.RequestHandler):
         else:
             pic = "../resources/dog_404.png"
 
-        query = PicturePost.query(PicturePost.profile_key == profile.key).order(-PicturePost.time)
+        query = PicturePost.query(PicturePost.profile_key == profile_key).order(-PicturePost.time)
         posts = query.fetch()
         post_pics = []
 

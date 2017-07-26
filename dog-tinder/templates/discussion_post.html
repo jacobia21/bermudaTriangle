@@ -33,8 +33,8 @@
       <span><img src="resources/images.png"></span>
     </button>
   </div>
-    <div class="lightBox center margin"><h2>Discussion Board</h2></div>
-    <div class="lightBox margin">
+    <div class="container center margin"><h2>Discussion Board</h2></div>
+    <div class="container margin">
       <h4><strong> {{post.title}}<strong></h4>
       <i><strong>{{post.profile_key.get().name}}<strong></i>
         <br>
@@ -43,7 +43,7 @@
       <br>
       {{post.content}}
     </div>
-    <div class="lightBox center margin"><h2>Comments</h2></div>
+    <div class="container center margin"><h2>Comments</h2></div>
     <div class="center">
       {% if user %}
       <form method="post" action="/discuss/send_comment?id={{post.key.urlsafe()}}&post_type=discuss">

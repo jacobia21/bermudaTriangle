@@ -33,7 +33,7 @@
       <span><img src="resources/images.png"></span>
     </button>
   </div>
-    <div class="container">
+    <div class="flex">
       <div class="vertical rightBorder">
         <!--left side-->
 
@@ -95,13 +95,12 @@
 
         <div class="flex">
           {% for post in posts %}
-          <span class="darkBox">
+          <span class="post">
             <h4>{{post.title}}</h4>
             <img src="{{post_pics[posts.index(post)]}}">
           </span>
           {% endfor %}
         </div>
-
       </div>
     </div>
 
