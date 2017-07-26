@@ -125,81 +125,37 @@ p{
 img{
   max-height: 200px;
 }
+.box{
+    background-color: rgba(255,255,255,0.58);
+    padding: 1px;
+    margin: 1px;
+    text-align: center;
+  }
+.box, h2{
+    font-size: 30px;
+    padding: 2px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+.makepost, h5{
+  font-size: 20px;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.homepage{
-  display: flex;
-  flex-wrap: wrap;
 }
-.newsletter{
-  width: 1000px;
-  border: 5px solid darkgreen;
-  padding: 10px;
-  margin: 25px 5px;
-  text-align: center;
-  background-image: url(/resources/Paper-training-From-Facebook.jpg);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  background-color: white;
-  text-shadow: 0px 10px 2px silver;
+.post, h4{
+  font-size: 23px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+
 }
-
-
-.editNewsletter input[type=text]{
-  width: 585px;
-  height: 30px;
-  border-width: thick;
-  position: absolute;
-  top:495px;
-  right: 273px;
+.darkBox, h5{
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
-.editNewsletter input[type=submit]{
-  position: absolute;
-  right: 273px;
-  top: 495px;
-  height: 50px;
-  width:75px;
-  background-color: black;
-  color: silver;
+.makea{
+  margin-top: 18px;
+  margin-bottom: 14px;
 }
-
-input, h6{
-  padding: 10px;
-  border: 5px;
-
+.comments{
+  background-color: rgba(255, 255, 255, 0.58);
 }
