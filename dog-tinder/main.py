@@ -187,6 +187,11 @@ class AllProfilesPage(webapp2.RequestHandler):
         temp = env.get_template("all_profiles.html")
         self.response.out.write(temp.render(my_vars))
 
+class TestHeaderPage(webapp2.RequestHandler):
+    def get(self):
+        temp = env.get_template("test_headers.html")
+        self.response.out.write(temp.render())
+
 
 #Datastore page handler classes
 
@@ -332,5 +337,7 @@ app = webapp2.WSGIApplication([
     ('/discuss/send_comment', CommentMaker),
 
     ('/profile/submit_changes', SaveProfileChanges),
-    ('/profile/upload_profile_pic', UploadPhotos)
+    ('/profile/upload_profile_pic', UploadPhotos),
+
+    ('/test_headers', TestHeaderPage),
 ], debug=True)
