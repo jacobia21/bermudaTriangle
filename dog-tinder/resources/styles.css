@@ -287,10 +287,12 @@ ul li a{
   outline: none;
 
 }
-.sidebarbtn img{
-  height: 60px;
-  width: 60px;
+.header img{
+  height: 40px;
+  width: 40px;
   position: relative;
-  top: -7.5px;
+  top: 15px;
   left: 0px;
+  border: none;
+  padding: none;
 }
