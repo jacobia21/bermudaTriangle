@@ -60,7 +60,7 @@ li a:hover {
 h1{
   text-shadow: -2px 0 white,0 2px white,2px 0 white,0 -2px white;
   font-family: 'Courgette';
-	font-size: 40px;
+	font-size: 50px;
 	font-style: normal;
   text-align: center;
   border-radius: 10px;
@@ -72,8 +72,8 @@ h1{
 h2{
   color: black;
   text-shadow: -1px 0 #FFFFFF,0 1px #FFFFFF,1px 0 #FFFFFF,0 -1px #FFFFFF;
-  font-family: monaco, Consolas, "Lucida Console", monospace;
-	font-size: 24px;
+  font-family: 'Boogaloo';
+	font-size: 40px;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 500;
