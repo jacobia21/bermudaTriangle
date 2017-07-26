@@ -7,8 +7,6 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color: rgba(144,144,144,0.58);
-    font-style: helvetica;
-    font-family: Consolas, monaco, monospace;
     font-size: 16px;
 }
 
@@ -35,9 +33,9 @@ li a:hover {
 }
 
 .darkBox {
-  background-color: rgba(144,144,144,0.58);
-  padding: 10px;
-  margin: 10px;
+  background-color: rgba(255,255,255,0.58);
+  padding: 8px;
+  margin-top: 3px;
 }
 
 .flex {
@@ -60,8 +58,7 @@ li a:hover {
 h1{
   color: black;
   text-shadow: -1px 0 #FFFFFF,0 1px #FFFFFF,1px 0 #FFFFFF,0 -1px #FFFFFF;
-  font-family: Consolas, monaco, monospace;
-	font-size: 26px;
+	font-size: 36px;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 500;
@@ -69,9 +66,7 @@ h1{
 }
 h2{
   color: black;
-  text-shadow: -1px 0 #FFFFFF,0 1px #FFFFFF,1px 0 #FFFFFF,0 -1px #FFFFFF;
-  font-style: helvetica;
-  font-family: Consolas, monaco, monospace;
+
 	font-size: 20px;
 	font-style: normal;
 	font-variant: normal;
@@ -79,9 +74,8 @@ h2{
 	/*line-height: 20px*/
 }
 h3{
-  color:white;
-  text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;
-  font-family: Consolas, monaco, monospace;
+  color: black;
+  text-shadow: -1px 0 #FFFFFF,0 1px #FFFFFF,1px 0 #FFFFFF,0 -1px #FFFFFF;
 	font-size: 18px;
 	font-style: normal;
 	font-variant: normal;
@@ -89,9 +83,8 @@ h3{
 	/*line-height: 15.4px;*/
 }
 h4{
-  color:white;
-  text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;
-  font-family: Consolas, monaco, monospace;
+  color: black;
+  text-shadow: -1px 0 #FFFFFF,0 1px #FFFFFF,1px 0 #FFFFFF,0 -1px #FFFFFF;
 	font-size: 18px;
 	font-style: normal;
 	font-variant: normal;
@@ -103,7 +96,7 @@ h5{
   font-style: normal;
   font-variant: normal;
   font-weight: 100;
-  line-height: 14px;
+  /*line-height: 14px;*/
 }
 
 h6{
@@ -132,7 +125,6 @@ p{
 img{
   max-height: 200px;
 }
-
 .box{
     background-color: rgba(255,255,255,0.58);
     padding: 1px;
@@ -166,7 +158,6 @@ img{
 }
 .comments{
   background-color: rgba(255, 255, 255, 0.58);
-
 }
 .homepage{
   display: flex;
