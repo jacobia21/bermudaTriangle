@@ -21,3 +21,15 @@ indexes:
   properties:
   - name: time
     direction: desc
+
+- kind: PicturePost
+  properties:
+  - name: profile_key
+  - name: time
+    direction: desc
+
+- kind: PicturePost
+  ancestor: yes
+  properties:
+  - name: time
+    direction: desc
