@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Discussion - Canine Companions</title>
     <link type="text/css" rel="stylesheet" href= "resources/style.css"/>
     <script type="text/javascript" src="resources/main.js"></script>
   </head>
-  <title>Discussion</title>
   <body>
     <h1>Canine Companions</h1>
     <ul>
@@ -31,28 +31,27 @@
     <div class="box"><h2>Discussion Board</h2></div>
     <h5>Talk with your fellow Canine Companions users and share your questions, concerns, and
       opinions about dogs in our interactive forum! Please keep all comments and forums
-      appropriate and avoid inappropriate language and comments.</h5>
+      appropriate and avoid inappropriate language and comments.
+    </h5>
 
-      {% if user %}
-     <div class ="makea"><h5>Make a Post</h5></div>
-      <form method="post" action="/discuss/makepost">
-        <input type="text" name="title" placeholder="Title"/><br><br>
-        <textarea rows="5" cols="40" name="content" placeholder="Let's Talk Dog!"></textarea></br>
-        <input type=submit value='Submit'/>
-      </form>
-      {% else %}
-      Login to post!<br><br>
-      {% endif %}
+    {% if user %}
+    <div class ="makea"><h5>Make a Post</h5></div>
+    <form method="post" action="/discuss/makepost">
+      <input type="text" name="title" placeholder="Title"/><br><br>
+      <textarea rows="5" cols="40" name="content" placeholder="Let's Talk Dog!"></textarea></br>
+      <input type=submit value='Submit'/>
+    </form>
+    {% else %}
+    Login to post!<br><br>
+    {% endif %}
 
-      <div class="posts"><h4>Posts</h4></div>
-      {% for post in posts %}
-      <div class="darkBox">
-        <h5><a href="/discuss/post?id={{post.key.urlsafe()}}"><strong>{{post.title}}</strong></a></h5>
-        <p><strong>{{post.profile_key.get().name}}<strong></p>
-        <p>Posted: {{post.time}}</p>
-      </div>
-      {% endfor %}
-
-
+    <div class="posts"><h4>Posts</h4></div>
+    {% for post in posts %}
+    <div class="darkBox">
+      <h5><a href="/discuss/post?id={{post.key.urlsafe()}}"><strong>{{post.title}}</strong></a></h5>
+      <p><strong>{{post.profile_key.get().name}}<strong></p>
+      <p>Posted: {{post.time}}</p>
+    </div>
+    {% endfor %}
   </body>
 </html>
