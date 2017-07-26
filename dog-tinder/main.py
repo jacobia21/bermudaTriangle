@@ -14,17 +14,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+import binascii
 import datetime
 import jinja2
 import logging
 import webapp2
-import binascii
 from google.appengine.api import users
 from google.appengine.ext import ndb
 
 env = jinja2.Environment(loader = jinja2.FileSystemLoader("templates"))
 
-def getUserInfo(path):
+def get_user_info(path):
     cur_user = users.get_current_user()
     log_url = ''
     if cur_user:
@@ -42,7 +42,7 @@ def getUserInfo(path):
         "user_id": user_id
     }
 
-def requestSafely(page,property_name,default_value = '',backup_value = None):
+def request_safely(page,property_name,default_value = '',backup_value = None):
     request = page.request.get(str(property_name))
     if request:
         return request
@@ -52,6 +52,13 @@ def requestSafely(page,property_name,default_value = '',backup_value = None):
         else:
             return default_value
 
+def string2bool(boolStr):
+    if boolStr in ['True','true','1']:
+        return True
+    elif boolStr in ['False','false','0']:
+        return False
+    else:
+        return None
 
 #data model classes
 
@@ -77,22 +84,22 @@ class DiscussPost(ndb.Model):
 class Comment(ndb.Model):
     content = ndb.StringProperty()
     time = ndb.DateTimeProperty(auto_now_add=True)
-    profile_key = ndb.KeyProperty(Profile)
     discuss_post_key = ndb.KeyProperty(DiscussPost)
     pic_post_key = ''
+    profile_key = ndb.KeyProperty(Profile)
 
 
 #basic page handler classes
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        my_vars = getUserInfo('/')
+        my_vars = get_user_info('/')
         temp = env.get_template("homepage.html")
         self.response.out.write(temp.render(my_vars))
 
 class DiscussionPage(webapp2.RequestHandler):
     def get(self):
-        my_vars = getUserInfo('/discuss')
+        my_vars = get_user_info('/discuss')
 
         query = DiscussPost.query().order(-DiscussPost.time)
         posts = query.fetch()
@@ -103,14 +110,19 @@ class DiscussionPage(webapp2.RequestHandler):
 
 class DiscussionPostHandler(webapp2.RequestHandler):
     def get(self):
-        my_vars = getUserInfo('/')
+        my_vars = get_user_info('/discuss/post?id='+self.request.get('id'))
 
         post_key = ndb.Key(urlsafe=self.request.get('id'))
         post = post_key.get()
 
         if post:
             post.key = post_key
+
+            query = Comment.query(Comment.discuss_post_key == post_key).order(-Comment.time)
+            comments = query.fetch()
+
             my_vars['post'] = post
+            my_vars['comments'] = comments
 
             temp = env.get_template("discussion_post.html")
             self.response.out.write(temp.render(my_vars))
@@ -119,7 +131,7 @@ class DiscussionPostHandler(webapp2.RequestHandler):
 
 class ProfileHandler(webapp2.RequestHandler):
     def get(self):
-        my_vars = getUserInfo('/')
+        my_vars = get_user_info('/all_profiles')
         user = my_vars['user']
 
         profile_key = ndb.Key(urlsafe=self.request.get('id'))
@@ -130,9 +142,9 @@ class ProfileHandler(webapp2.RequestHandler):
             my_vars['profile'] = profile
 
             if profile.profile_pic:
-                pic = "data:image;base64, "+binascii.b2a_base64(profile.profile_pic)
+                pic = "data:image;base64," + binascii.b2a_base64(profile.profile_pic)
             else:
-                pic = "../resources/Insert-Photo-Here.jpg"
+                pic = "../resources/dog_404.png"
 
             my_vars['pic'] = pic
 
@@ -143,13 +155,13 @@ class ProfileHandler(webapp2.RequestHandler):
 
 class EditProfile(webapp2.RequestHandler):
     def get(self):
-        my_vars = getUserInfo('/')
+        my_vars = get_user_info('/')
         temp = env.get_template("edit_profile.html")
         self.response.out.write(temp.render(my_vars))
 
 class MyProfile(webapp2.RequestHandler):
     def get(self):
-        my_vars = getUserInfo('/profile')
+        my_vars = get_user_info('/profile')
         user = my_vars['user']
         if user:
             profile_key = ndb.Key('Profile',user.nickname())
@@ -166,7 +178,7 @@ class MyProfile(webapp2.RequestHandler):
 
 class AllProfilesPage(webapp2.RequestHandler):
     def get(self):
-        my_vars = getUserInfo('/all_profiles')
+        my_vars = get_user_info('/all_profiles')
 
         query = Profile.query()
         profiles = query.fetch()
@@ -180,7 +192,7 @@ class AllProfilesPage(webapp2.RequestHandler):
 
 class DiscussPostMaker(webapp2.RequestHandler):
     def post(self):
-        user_info = getUserInfo('/')
+        user_info = get_user_info('/')
         user = user_info['user']
 
         if not user:
@@ -206,9 +218,49 @@ class DiscussPostMaker(webapp2.RequestHandler):
         discuss_post.put()
         self.redirect('/discuss')
 
+class CommentMaker(webapp2.RequestHandler):
+    def post(self):
+        user_info = get_user_info('/')
+        user = user_info['user']
+
+        profile_key = ndb.Key('Profile',user.nickname())
+        profile = profile_key.get()
+        if not profile:
+            profile = Profile(
+                name = user_info['username']
+            )
+        profile.key = profile_key
+        profile.put()
+
+        post_key = ndb.Key(urlsafe=self.request.get('id'))
+        post = post_key.get()
+
+        post_type = self.request.get('post_type')
+
+        if not post or not user:
+            if post_type=='discuss':
+                self.redirect('/discuss')
+            else:
+                self.redirect('/')
+
+        comment_key = ndb.Key('Comment',self.request.get('content')+str(datetime.datetime.now()))
+        comment = comment_key.get()
+        comment = Comment(
+            content = self.request.get('content'),
+            profile_key = profile.key
+        )
+        if post_type == "discuss":
+            comment.discuss_post_key = post_key
+        comment.key = comment_key
+        comment.put()
+        if post_type == "discuss":
+            self.redirect('/discuss/post?id='+self.request.get('id'))
+        else:
+            self.redirect('/')
+
 class SaveProfileChanges(webapp2.RequestHandler):
     def post(self):
-        user_info = getUserInfo('/')
+        user_info = get_user_info('/')
         user = user_info['user']
 
         if not user:
@@ -220,28 +272,28 @@ class SaveProfileChanges(webapp2.RequestHandler):
         if profile:
             profile = Profile(
                 name = user_info['username'],
-                dog_name = requestSafely(self,'name','',profile.dog_name),
-                age = requestSafely(self,'age','',profile.age),
-                breed = requestSafely(self,'breed','',profile.breed),
-                hometown = requestSafely(self,'town','',profile.hometown),
-                active = requestSafely(self,'active','false',profile.active)=='true',
-                fav_toy = requestSafely(self,'fav_toy','',profile.fav_toy),
-                bio = requestSafely(self,'bio','',profile.bio),
-                kid_friendly = requestSafely(self,'kid_friendly','false',profile.kid_friendly)=='true',
-                vaccinated = requestSafely(self,'vaccinated','false',profile.vaccinated)=='true'
+                dog_name = request_safely(self,'name','',profile.dog_name),
+                age = request_safely(self,'age','',profile.age),
+                breed = request_safely(self,'breed','',profile.breed),
+                hometown = request_safely(self,'town','',profile.hometown),
+                active = string2bool(request_safely(self,'active','false',profile.active)),
+                fav_toy = request_safely(self,'fav_toy','',profile.fav_toy),
+                bio = request_safely(self,'bio','',profile.bio),
+                kid_friendly = string2bool(request_safely(self,'kid_friendly','false',profile.kid_friendly)),
+                vaccinated = string2bool(request_safely(self,'vaccinated','false',profile.vaccinated))
             )
         else:
             profile = Profile(
                 name = user_info['username'],
-                dog_name = requestSafely(self,'name'),
-                age = requestSafely(self,'age'),
-                breed = requestSafely(self,'breed'),
-                hometown = requestSafely(self,'hometown'),
-                active = requestSafely(self,'active','false')=='true',
-                fav_toy = requestSafely(self,'fav_toy'),
-                bio = requestSafely(self,'bio'),
-                kid_friendly = requestSafely(self,'kid_friendly','false')=='true',
-                vaccinated = requestSafely(self,'vaccinated','false')=='true'
+                dog_name = request_safely(self,'name'),
+                age = request_safely(self,'age'),
+                breed = request_safely(self,'breed'),
+                hometown = request_safely(self,'hometown'),
+                active = string2bool(request_safely(self,'active','false')),
+                fav_toy = request_safely(self,'fav_toy'),
+                bio = request_safely(self,'bio'),
+                kid_friendly = string2bool(request_safely(self,'kid_friendly','false')),
+                vaccinated = string2bool(request_safely(self,'vaccinated','false'))
             )
         profile.key = profile_key
         profile.put()
@@ -250,7 +302,7 @@ class SaveProfileChanges(webapp2.RequestHandler):
 
 class UploadPhotos(webapp2.RequestHandler):
     def post(self):
-        user_info = getUserInfo('/')
+        user_info = get_user_info('/')
         user = user_info['user']
 
         if not user:
@@ -277,6 +329,8 @@ app = webapp2.WSGIApplication([
     ('/my_profile', MyProfile),
 
     ('/discuss/makepost', DiscussPostMaker),
+    ('/discuss/send_comment', CommentMaker),
+
     ('/profile/submit_changes', SaveProfileChanges),
     ('/profile/upload_profile_pic', UploadPhotos)
 ], debug=True)
