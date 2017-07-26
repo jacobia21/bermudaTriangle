@@ -71,7 +71,7 @@ li a:hover {
 h1{
   color: black;
   text-shadow: -1px 0 #FFFFFF,0 1px #FFFFFF,1px 0 #FFFFFF,0 -1px #FFFFFF;
-  font-family: monaco, Consolas, "Lucida Console", monospace;
+  font-family: 'Lato';
 	font-size: 26px;
 	font-style: normal;
 	font-variant: normal;
