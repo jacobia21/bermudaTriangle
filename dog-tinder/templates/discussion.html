@@ -45,7 +45,7 @@
     Login to post!<br><br>
     {% endif %}
 
-    <div class="posts"><h4>Posts</h4></div>
+    <div class="lightBox"><h4>Posts</h4></div>
     {% for post in posts %}
     <div class="darkBox">
       <h5><a href="/discuss/post?id={{post.key.urlsafe()}}"><strong>{{post.title}}</strong></a></h5>
