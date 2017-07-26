@@ -34,8 +34,8 @@ li a:hover {
   padding: 14px 16px;
 }
 
-.darkBox {
-  background-color: rgba(144,144,144,0.58);
+.lightBox {
+  background-color: rgba(255, 255, 255,0.58);
   padding: 10px;
   margin: 10px;
 }
@@ -211,4 +211,7 @@ input h6{
 .margin{
   margin-top: 20px;
   margin-bottom: 20px;
+}
+.center{
+  text-align: center;
 }
