@@ -7,6 +7,7 @@
   </head>
   <body>
     <h1>Canine Companions</h1>
+    <div class="sidebar">
     <ul>
       <li><a href="/">Home</a></li>
       <li><a href="/all_profiles">Other Profiles</a></li>
@@ -22,24 +23,27 @@
       <li class="headerRight"><a href="/my_profile">{{username}}</a></li>
       {% endif %}
       <div class="searchBar">
-        <input type="text" name="Search Bar"/>
+        <input type="text" name= "Search Bar"/>
         <input type="submit" value="Submit">
       </div>
     </ul>
-
+    <button class="sidebarbtn">
+      <span></span>
+    </button>
+  </div>
 
     <div class="lightBox center margin"><h2>Discussion Board</h2></div>
-    <h5>Talk with your fellow Canine Companions users and share your questions, concerns, and
+    <p>Talk with your fellow Canine Companions users and share your questions, concerns, and
       opinions about dogs in our interactive forum! Please keep all comments and forums
       appropriate and avoid inappropriate language and comments.
-    </h5>
+    </p>
 
     {% if user %}
     <div class="lightBox center margin"><h2>Make a Post</h2></div>
     <form method="post" action="/discuss/makepost">
-      <input type="text" name="title" placeholder="Title" class="white one"/><br><br>
-      <textarea rows="5" cols="40" name="content" placeholder="Let's Talk Dog!" class="white"></textarea></br>
-      <input type=submit value='Submit'class="white"/>
+      <input type="text" name="title" placeholder="Title"/><br><br>
+      <textarea rows="5" cols="40" name="content" placeholder="Let's Talk Dog!"></textarea></br>
+      <input type=submit value='Submit'/>
     </form>
     {% else %}
     Login to post!<br><br>
@@ -47,9 +51,11 @@
 
     <div class="lightBox center margin"><h2>Posts</h2></div>
     {% for post in posts %}
+    <div class="lightBox">
       <h5><a href="/discuss/post?id={{post.key.urlsafe()}}"><strong>{{post.title}}</strong></a></h5>
       <p><strong>{{post.profile_key.get().name}}<strong></p>
       <p>Posted: {{post.time}}</p>
+    </div>
     {% endfor %}
   </body>
 </html>
