@@ -2,8 +2,8 @@
 <html>
   <head>
     <title>{{profile.name}}'s Dog Profile - Canine Companions</title>
-    <link type="text/css" rel="stylesheet" href="resources/styles.css"/>
-    <script src="http://code.jquery.com/jquery-3.2.1.js"></script>
+    <link type="text/css" rel="stylesheet" href="resources/style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript" src="resources/main.js"></script>
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Courgette">
   </head>
@@ -43,11 +43,11 @@
         <h2>{{profile.name}}'s dog profile</h2>
         {% endif %}
 
-        <img id="myImg" src="{{pic}}" />
+        <img id="myImg" src="{{pic}}"/>
 
         {% if profile.key == user_id %}
         <form method="post" action="/profile/upload_profile_pic" enctype="multipart/form-data">
-          <input type='file' name="profile_pic"/>
+          <input type='file' accept="image/*" name="profile_pic"/>
           <input type="submit" value="Submit"/>
         </form>
         {% endif %}
@@ -87,10 +87,21 @@
         <!--right side-->
         <h2> Dog Photos!</h2>
         <h3>Here's your chance to show your cutest dog photos.</h3>
-        <form method= "post" action="/upload_pics">
-            <input type="file" name="pic" accept="image/*">
-            <input type="submit" value="Submit">
+        <form method="post" action="/profile/upload_photos" enctype="multipart/form-data">
+            <input type="file" accept="image/*" name="post_pic"/><br><br>
+            <input type="text" name="title" placeholder="Add a caption"/>
+            <input type="submit" value="Post!"/>
         </form>
+
+        <div class="flex">
+          {% for post in posts %}
+          <span class="darkBox">
+            <h4>{{post.title}}</h4>
+            <img src="{{post_pics[posts.index(post)]}}">
+          </span>
+          {% endfor %}
+        </div>
+
       </div>
     </div>
 

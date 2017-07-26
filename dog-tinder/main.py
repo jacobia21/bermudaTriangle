@@ -81,11 +81,17 @@ class DiscussPost(ndb.Model):
     time = ndb.DateTimeProperty(auto_now_add=True)
     profile_key = ndb.KeyProperty(Profile)
 
+class PicturePost(ndb.Model):
+    title = ndb.StringProperty()
+    pic = ndb.BlobProperty()
+    time = ndb.DateTimeProperty(auto_now_add=True)
+    profile_key = ndb.KeyProperty(Profile)
+
 class Comment(ndb.Model):
     content = ndb.StringProperty()
     time = ndb.DateTimeProperty(auto_now_add=True)
     discuss_post_key = ndb.KeyProperty(DiscussPost)
-    pic_post_key = ''
+    pic_post_key = ndb.KeyProperty(PicturePost)
     profile_key = ndb.KeyProperty(Profile)
 
 
@@ -137,22 +143,31 @@ class ProfileHandler(webapp2.RequestHandler):
         profile_key = ndb.Key(urlsafe=self.request.get('id'))
         profile = profile_key.get()
 
-        if profile:
-            profile.key = profile_key
-            my_vars['profile'] = profile
-
-            if profile.profile_pic:
-                pic = "data:image;base64," + binascii.b2a_base64(profile.profile_pic)
-            else:
-                pic = "../resources/dog_404.png"
-
-            my_vars['pic'] = pic
-
-            temp = env.get_template("user_profile.html")
-            self.response.out.write(temp.render(my_vars))
-        else:
+        if not profile:
             self.redirect('/edit_profile')
 
+        if profile.profile_pic:
+            pic = "data:image;base64," + binascii.b2a_base64(profile.profile_pic)
+        else:
+            pic = "../resources/dog_404.png"
+
+        query = PicturePost.query(PicturePost.profile_key == profile.key).order(-PicturePost.time)
+        posts = query.fetch()
+        post_pics = []
+
+        for post in posts:
+            if post.pic:
+                post_pics.append("data:image;base64," + binascii.b2a_base64(post.pic))
+            else:
+                post_pics.append("")
+
+        my_vars['profile'] = profile
+        my_vars['pic'] = pic
+        my_vars['posts'] = posts
+        my_vars['post_pics'] = post_pics
+
+        temp = env.get_template("user_profile.html")
+        self.response.out.write(temp.render(my_vars))
 class EditProfile(webapp2.RequestHandler):
     def get(self):
         my_vars = get_user_info('/')
@@ -305,13 +320,13 @@ class SaveProfileChanges(webapp2.RequestHandler):
 
         self.redirect('/my_profile')
 
-class UploadPhotos(webapp2.RequestHandler):
+class UploadProfilePic(webapp2.RequestHandler):
     def post(self):
-        user_info = get_user_info('/')
+        user_info = get_user_info('/all_profiles')
         user = user_info['user']
 
         if not user:
-            self.redirect('/')
+            self.redirect('/all_profiles')
 
         profile_key = ndb.Key('Profile',user.nickname())
         profile = profile_key.get()
@@ -321,6 +336,35 @@ class UploadPhotos(webapp2.RequestHandler):
             profile.key = profile_key
             profile.put()
 
+        self.redirect('/my_profile')
+
+class UploadPhotos(webapp2.RequestHandler):
+    def post(self):
+        user_info = get_user_info('/all_profiles')
+        user = user_info['user']
+
+        if not user:
+            self.redirect('/all_profiles')
+
+        profile_key = ndb.Key('Profile',user.nickname())
+        profile = profile_key.get()
+
+        if not profile:
+            profile = Profile(
+                name = user_info['username']
+            )
+        profile.key = profile_key
+        profile.put()
+
+        pic_post_key = ndb.Key('PicturePost',self.request.get('title')+str(datetime.datetime.now()))
+        pic_post = pic_post_key.get()
+        pic_post = PicturePost(
+            title = self.request.get('title'),
+            pic = self.request.get('post_pic'),
+            profile_key = profile.key,
+        )
+        pic_post.key = pic_post_key
+        pic_post.put()
         self.redirect('/my_profile')
 
 
@@ -337,7 +381,8 @@ app = webapp2.WSGIApplication([
     ('/discuss/send_comment', CommentMaker),
 
     ('/profile/submit_changes', SaveProfileChanges),
-    ('/profile/upload_profile_pic', UploadPhotos),
+    ('/profile/upload_profile_pic', UploadProfilePic),
+    ('/profile/upload_photos', UploadPhotos),
 
     ('/test_headers', TestHeaderPage),
 ], debug=True)
