@@ -2,11 +2,14 @@
 <html>
   <head>
     <title>Discussion - Canine Companions</title>
-    <link type="text/css" rel="stylesheet" href="resources/style.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/styles.css"/>
+    <script src="http://code.jquery.com/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="resources/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Courgette">
   </head>
   <body>
     <h1>Canine Companions</h1>
+    <div class="sidebar">
     <ul>
       <li><a href="/">Home</a></li>
       <li><a href="/all_profiles">Other Profiles</a></li>
@@ -22,17 +25,20 @@
       <li class="headerRight"><a href="/my_profile">{{username}}</a></li>
       {% endif %}
       <div class="searchBar">
-        <input type="text" name="Search Bar"/>
+        <input type="text" name= "Search Bar"/>
         <input type="submit" value="Submit">
       </div>
     </ul>
-
+    <button class="sidebarbtn">
+      <span></span>
+    </button>
+  </div>
 
     <div class="lightBox center margin"><h2>Discussion Board</h2></div>
-    <h5>Talk with your fellow Canine Companions users and share your questions, concerns, and
+    <p>Talk with your fellow Canine Companions users and share your questions, concerns, and
       opinions about dogs in our interactive forum! Please keep all comments and forums
       appropriate and avoid inappropriate language and comments.
-    </h5>
+    </p>
 
     {% if user %}
     <div class="lightBox center margin"><h2>Make a Post</h2></div>

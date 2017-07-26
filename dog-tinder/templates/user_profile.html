@@ -5,9 +5,11 @@
     <link type="text/css" rel="stylesheet" href="resources/style.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript" src="resources/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Courgette">
   </head>
   <body>
     <h1>Canine Companions</h1>
+    <div class="sidebar">
     <ul>
       <li><a href="/">Home</a></li>
       <li><a href="/all_profiles">Other Profiles</a></li>
@@ -23,12 +25,14 @@
       <li class="headerRight"><a href="/my_profile">{{username}}</a></li>
       {% endif %}
       <div class="searchBar">
-        <input type="text" name="Search Bar"/>
+        <input type="text" name= "Search Bar"/>
         <input type="submit" value="Submit">
       </div>
     </ul>
-
-
+    <button class="sidebarbtn">
+      <span></span>
+    </button>
+  </div>
     <div class="container">
       <div class="vertical rightBorder">
         <!--left side-->
@@ -48,7 +52,7 @@
         </form>
         {% endif %}
 
-        <h3>
+        <h4>
           Name: {{profile.dog_name}}</br></br>
           Age: {{profile.age}}</br></br>
           Breed: {{profile.breed}}</br></br>
@@ -74,9 +78,9 @@
           {% else %}
           Vaccinated: No
           {% endif %}
-        </h3>
+        </h4>
         {% if profile.key == user_id%}
-        <h3><a href="/profile/edit">Edit Profile</a></h3>
+        <h4><a href="/profile/edit">Edit Profile</a></h4>
         {% endif %}
       </div>
       <div class="vertical leftEdge">

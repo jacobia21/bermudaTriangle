@@ -37,4 +37,8 @@ function onSubmitImages(e) {
   $('#submitImgs').on('click',onSubmitImages);
 }*/
 
-//$(document).ready(addEvents);
+$(document).ready(function() {
+  $('.sidebarbtn').click(function() {
+    $('.sidebar').toggleClass('active');
+  });
+});
