@@ -132,10 +132,15 @@ p{
     text-align: center;
     padding-bottom: 0px;
     border-radius: 25px;
+    max-width: 300px;
+    width: 400px;
 }
 
 img{
-  max-height: 200px;
+  height: 210px;
+  width: 300px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .box{
@@ -183,7 +188,7 @@ img{
   padding: 10px;
   margin: 25px 5px;
   text-align: center;
-  background-image: url(/resources/Paper-training-From-Facebook.jpg);
+  background-image: url(/resources/heart.png);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -282,32 +287,10 @@ ul li a{
   outline: none;
 
 }
-.sidebarbtn span{
-  display: block;
-  width: 55px;
-  height:3px;
-  background:#262626;
-  position: absolute;
-  top: 35px;
-  transition: .3s;
-}
-.sidebarbtn span:before{
-  content: '';
-  position: absolute;
-  top: -10px;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: #262626;
-  transition: .3s;
-}
-.sidebarbtn span:after{
-  content: '';
-  position: absolute;
-  top: 10px;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: #262626;
-  transition: .3s;
+.sidebarbtn img{
+  height: 60px;
+  width: 60px;
+  position: relative;
+  top: -7.5px;
+  left: 0px;
 }
