@@ -132,17 +132,22 @@ p{
 }
 
 .dogOfWeek{
-    width: 300px;
+
     border: 5px solid #76BED0;
     padding: 10px;
     margin: 25px 5px;
     text-align: center;
     padding-bottom: 0px;
     border-radius: 25px;
+    max-width: 300px;
+    width: 400px;
 }
 
 img{
-  max-height: 200px;
+  height: 210px;
+  width: 300px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .box{
