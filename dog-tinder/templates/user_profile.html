@@ -75,13 +75,13 @@
           {% endif %}
         </h3>
         {% if profile.key == user_id%}
-        <h4><a href="/profile/edit">Edit Profile</a></h4>
+        <h3><a href="/profile/edit">Edit Profile</a></h3>
         {% endif %}
       </div>
       <div class="vertical leftEdge">
         <!--right side-->
         <h2> Dog Photos!</h2>
-        <h4>Here's your chance to show your cutest dog photos.</h4>
+        <h3>Here's your chance to show your cutest dog photos.</h3>
         <form method= "post" action="/upload_pics">
             <input type="file" name="pic" accept="image/*">
             <input type="submit" value="Submit">
