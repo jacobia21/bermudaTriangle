@@ -133,13 +133,12 @@ img{
   max-height: 200px;
 }
 
-.box{
+.lightBox{
     background-color: rgba(255,255,255,0.58);
     padding: 1px;
     margin: 1px;
-    text-align: center;
   }
-.box h2{
+.lightBox h2{
     font-size: 30px;
     padding: 2px;
     margin-top: 8px;
@@ -160,14 +159,11 @@ img{
   margin-top: 3px;
   margin-bottom: 3px;
 }
-.makea{
-  margin-top: 18px;
-  margin-bottom: 14px;
-}
-.comments{
-  background-color: rgba(255, 255, 255, 0.58);
 
+.center {
+  text-align: center;
 }
+
 .homepage{
   display: flex;
   flex-wrap: wrap;
