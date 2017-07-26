@@ -1,15 +1,9 @@
 body{
   background-color: #aedcbb;
-}
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: rgba(144,144,144,0.58);
-    font-style: helvetica;
-    font-family: Consolas, monaco, monospace;
-    font-size: 16px;
+  margin:0;
+  padding:0;
+  overflow: hidden;
+
 }
 
 li {
@@ -225,4 +219,80 @@ input h6{
 }
 input{
   border-radius: 25px;
+}
+
+.sidebar{
+  position: fixed;
+  top: 0;
+  left: -250px;
+  background-color: #262626;
+  width: 250px;
+  height: 100%;
+  transition: .3s;
+}
+ul {
+    margin: 0;
+    padding: 20px 0;
+    overflow: hidden;
+    background-color: rgba(144,144,144,0.58);
+    font-style: helvetica;
+    font-family: Consolas, monaco, monospace;
+    font-size: 16px;
+}
+ul li{
+  list-style: none;
+
+}
+ul li a{
+  padding: 10px 20px;
+  color:#fff;
+  display: block;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+.active{
+  left: 0;
+
+}
+.sidebarbtn{
+  position: absolute;
+  top:0;
+  right: -50px;
+  width: 50px;
+  height: 50px;
+  box-sizing: border-box;
+  cursor: pointer;
+  background:#f5f5f5;
+  border: none;
+  outline: none;
+
+}
+.sidebarbtn span{
+  display: block;
+  width: 35px;
+  height:3px;
+  background:#262626;
+  position: absolute;
+  top: 24px;
+  transition: .3s;
+}
+.sidebarbtn span:before{
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #262626;
+  transition: .3s;
+}
+.sidebarbtn span:after{
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #262626;
+  transition: .3s;
 }

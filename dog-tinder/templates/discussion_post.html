@@ -7,6 +7,7 @@
   </head>
   <body>
     <h1>Canine Companions</h1>
+    <div class="sidebar">
     <ul>
       <li><a href="/">Home</a></li>
       <li><a href="/all_profiles">Other Profiles</a></li>
@@ -26,12 +27,14 @@
         <input type="submit" value="Submit">
       </div>
     </ul>
+  </div>
 
 
     <div class="lightBox center margin"><h2>Discussion Board</h2></div>
     <div class="lightBox margin">
       <h4><strong> {{post.title}}<strong></h4>
       <i><strong>{{post.profile_key.get().name}}<strong></i>
+        <br>
       <i>Posted: {{post.time}}</i>
       <br>
       <br>

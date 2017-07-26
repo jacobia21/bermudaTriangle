@@ -3,10 +3,19 @@
   <head>
     <title>Canine Companions</title>
     <link type="text/css" rel="stylesheet" href="resources/styles.css"/>
-    <script type="text/javascript" src="resources/main.js"></script>
+    <script src="http://code.jquery.com/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="resources/main.js">
+      $(document).ready(function(){
+        $('.sidebarbtn').click(function(){
+          $('.sidebar').toggleClass('active');
+
+      })
+    })
+    </script>
   </head>
   <body>
     <h1>Canine Companions</h1>
+    <div class="sidebar">
     <ul>
       <li><a href="/">Home</a></li>
       <li><a href="/all_profiles">Other Profiles</a></li>
@@ -26,6 +35,10 @@
         <input type="submit" value="Submit">
       </div>
     </ul>
+    <button class="sidebarbtn">
+      <span></span>
+    </button>
+  </div>
 <div class= "homepage">
     <div class= "dogOfWeek">
     <img src="resources/rocky-dog-of-the-week.png">

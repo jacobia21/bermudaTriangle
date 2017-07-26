@@ -47,7 +47,7 @@
         </form>
         {% endif %}
 
-        <h3>
+        <h4>
           Name: {{profile.dog_name}}</br></br>
           Age: {{profile.age}}</br></br>
           Breed: {{profile.breed}}</br></br>
@@ -73,9 +73,9 @@
           {% else %}
           Vaccinated: No
           {% endif %}
-        </h3>
+        </h4>
         {% if profile.key == user_id%}
-        <h3><a href="/profile/edit">Edit Profile</a></h3>
+        <h4><a href="/profile/edit">Edit Profile</a></h4>
         {% endif %}
       </div>
       <div class="vertical leftEdge">
