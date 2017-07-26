@@ -132,3 +132,79 @@ p{
 img{
   max-height: 200px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.homepage{
+  display: flex;
+  flex-wrap: wrap;
+}
+.newsletter{
+  width: 1000px;
+  border: 5px solid darkgreen;
+  padding: 10px;
+  margin: 25px 5px;
+  text-align: center;
+  background-image: url(/resources/Paper-training-From-Facebook.jpg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-color: white;
+  text-shadow: 0px 10px 2px silver;
+}
+
+
+.editNewsletter input[type=text]{
+  width: 585px;
+  height: 30px;
+  border-width: thick;
+  position: absolute;
+  top:495px;
+  right: 273px;
+}
+.editNewsletter input[type=submit]{
+  position: absolute;
+  right: 273px;
+  top: 495px;
+  height: 50px;
+  width:75px;
+  background-color: black;
+  color: silver;
+}
+
+input, h6{
+  padding: 10px;
+  border: 5px;
+}
