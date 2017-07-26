@@ -1,15 +1,17 @@
 body{
-  background-color: #aedcbb;
+  background-color: #4484ce;
+
 }
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: rgba(144,144,144,0.58);
+    background-color: #4d4d4d;
     font-style: helvetica;
     font-family: Consolas, monaco, monospace;
     font-size: 16px;
+    border-radius: 25px;
 }
 
 li {
@@ -35,9 +37,10 @@ li a:hover {
 }
 
 .lightBox {
-  background-color: rgba(255, 255, 255,0.58);
+  background-color: #dfdce3;
   padding: 10px;
   margin: 10px;
+  border-radius: 25px;
 }
 
 .flex {
@@ -223,6 +226,11 @@ input h6{
   margin: 25px 5px;
   text-align: center;
 }
-input{
-  border-radius: 25px;
+
+.white {
+  background-color: white;
+  border-radius: 15px;
+  margin: 10px;
+  text-align: center;
+  border:2px solid #4d4d4d;
 }
