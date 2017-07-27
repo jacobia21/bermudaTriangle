@@ -190,7 +190,7 @@ p {
 .post div {
   width: 300px;
 }
-.post img {
+.post img:not(.like-button img){
   width: auto;
   height: auto;
   max-height: 225px;
@@ -221,14 +221,26 @@ p {
   display: inline-block;
   align-items: center;
 }
+
 #upload{
   display: flex;
 }
 #upload1{
   width: 175px;
 }
-.button{
+
+
+
+
+.like-button{
+  float: left;
+  background-color: white;
+}
+.like-button img {
+
   height: 20px;
   width: 20px;
-  float: left;
+}
+.liked {
+  background-color: #7FFF00;
 }
