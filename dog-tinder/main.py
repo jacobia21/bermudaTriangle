@@ -100,6 +100,20 @@ class Comment(ndb.Model):
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         my_vars = get_user_info('/')
+
+        query = PicturePost.query().order(-PicturePost.time)
+        posts = query.fetch()
+
+        post_pics = []
+        for post in posts:
+            if post.pic:
+                post_pics.append("data:image;base64," + binascii.b2a_base64(post.pic))
+            else:
+                post_pics.append("")
+
+        my_vars['posts'] = posts
+        my_vars['post_pics'] = post_pics
+
         temp = env.get_template("homepage.html")
         self.response.out.write(temp.render(my_vars))
 
