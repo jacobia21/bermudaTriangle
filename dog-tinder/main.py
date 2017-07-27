@@ -86,6 +86,7 @@ class PicturePost(ndb.Model):
     pic = ndb.BlobProperty()
     time = ndb.DateTimeProperty(auto_now_add=True)
     profile_key = ndb.KeyProperty(Profile)
+    likes = ndb.IntegerProperty()
 
 class Comment(ndb.Model):
     content = ndb.StringProperty()
@@ -93,6 +94,11 @@ class Comment(ndb.Model):
     discuss_post_key = ndb.KeyProperty(DiscussPost)
     pic_post_key = ndb.KeyProperty(PicturePost)
     profile_key = ndb.KeyProperty(Profile)
+
+class Like(ndb.Model):
+    pic_post_key = ndb.KeyProperty(PicturePost)
+    profile_key = ndb.KeyProperty(Profile)
+    time = ndb.DateTimeProperty(auto_now_add=True)
 
 
 #basic page handler classes
@@ -355,7 +361,7 @@ class UploadProfilePic(webapp2.RequestHandler):
 
         self.redirect('/my_profile')
 
-class UploadPhotos(webapp2.RequestHandler):
+class PicturePostMaker(webapp2.RequestHandler):
     def post(self):
         user_info = get_user_info('/all_profiles')
         user = user_info['user']
@@ -378,12 +384,55 @@ class UploadPhotos(webapp2.RequestHandler):
         pic_post = PicturePost(
             title = self.request.get('title'),
             pic = self.request.get('post_pic'),
+            likes = 0,
             profile_key = profile.key,
         )
         pic_post.key = pic_post_key
         pic_post.put()
         self.redirect('/my_profile')
 
+class LikePost(webapp2.RequestHandler):
+    def post(self):
+        user_info = get_user_info('/all_profiles')
+        user = user_info['user']
+
+        if not user:
+            self.redirect('/')
+
+        profile_key = ndb.Key('Profile',user.nickname())
+        profile = profile_key.get()
+
+        if not profile:
+            profile = Profile(
+                name = user_info['username']
+            )
+        profile.key = profile_key
+        profile.put()
+
+        post_key = ndb.Key(urlsafe=self.request.get('id'))
+        post = pic_post_key.get()
+        post.likes = post.likes + 1
+        post.put()
+
+        like_key = ndb.Key('Like',post.title+user.nickname()+datetime.datetime.now())
+        like = Like(
+            pic_post_key = post_key,
+            profile_key = profile.key
+        )
+        like.key = like_key
+        like.put()
+
+        url = self.request.get("url")
+        uid = self.request.get("uid")
+        if uId:
+            self.redirect("/"+url+"?id="+uid)
+        else:
+            self.redirect("/"+url)
+
+class CustomQuery(webapp2.RequestHandler):
+    def get(self):
+
+        self.redirect('/')
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
@@ -400,7 +449,8 @@ app = webapp2.WSGIApplication([
 
     ('/profile/submit_changes', SaveProfileChanges),
     ('/profile/upload_profile_pic', UploadProfilePic),
-    ('/profile/upload_photos', UploadPhotos),
+    ('/profile/upload_photos', PicturePostMaker),
 
     ('/test_headers', TestHeaderPage),
+    ('/run_query', CustomQuery)
 ], debug=True)
