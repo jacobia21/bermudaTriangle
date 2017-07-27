@@ -102,7 +102,7 @@
           {% for post in posts %}
           <span class="post">
             <div><img src="{{post_pics[posts.index(post)]}}"></div>
-            <span class="like-button"><img src="resources/emptypaw.png"></span>
+            <span class="like-button"><img src="../resources/emptypaw.png"></span>
             <a href="/profile?id={{post.profile_key.urlsafe()}}">{{post.profile_key.get().name.split('@')[0]}}</a>: {{post.title}}
           </span>
           {% endfor %}
