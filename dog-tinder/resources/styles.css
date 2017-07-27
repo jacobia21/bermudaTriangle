@@ -229,9 +229,10 @@ p {
   padding: 14px 16px;
 }
 
-#discussion{
-  display: inline-block;
-  align-items: center;
+.discussion {
+padding-left: 41%;
+padding-right: 0%;
+width: 140px;
 }
 
 #upload{
@@ -240,10 +241,18 @@ p {
 #upload1{
   width: 175px;
 }
-
-
-
-
+#dan{
+text-align: center;
+font-size: 40px;
+}
+.profile_info{
+  display: inline-flex;
+    line-height: 50%;
+}
+.profile_info h4{
+  padding-top: 10px;
+  padding-left: 5px;
+}
 .like-button{
   float: left;
   background-color: white;

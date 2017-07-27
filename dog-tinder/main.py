@@ -237,8 +237,9 @@ class TestHeaderPage(webapp2.RequestHandler):
         self.response.out.write(temp.render())
 class AboutUsPage(webapp2.RequestHandler):
     def get(self):
+        my_vars = get_user_info('/')
         temp = env.get_template("about.html")
-        self.response.out.write(temp.render())
+        self.response.out.write(temp.render(my_vars))
 
 #Datastore page handler classes
 

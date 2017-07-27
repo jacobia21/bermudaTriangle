@@ -19,6 +19,7 @@
         {% endif %}
         <li><a href="/discuss">Discussion</a></li>
         <li><a href="/all_profiles">All Profiles</a></li>
+          <li><a href="/about_us">About Us</a></li>
         <li class="headerRight">
           {% if user %}
           <a href="{{log_url}}">Logout</a>
@@ -26,7 +27,7 @@
           <a href="{{log_url}}">Login</a>
           {% endif %}
         </li>
-        <li><a href="/about_us">About Us</a></li>
+
         <li><img src="/resources/PawPrints.png"></li>
       </ul>
       <button class="sidebarbtn">
@@ -43,11 +44,13 @@
 
     {% if user %}
     <div class="container center margin"><h2>Make a Post</h2></div>
-    <form method="post" action="/discuss/makepost" id="discussion">
+    <div class= "discussion">
+    <form method="post" action="/discuss/makepost">
       <input type="text" name="title" placeholder="Title"/><br><br>
       <textarea rows="5" cols="40" name="content" placeholder="Let's Talk Dog!"></textarea></br>
       <input type=submit value='Submit'/>
     </form>
+   </div>
     {% else %}
     Login to post!<br><br>
     {% endif %}
