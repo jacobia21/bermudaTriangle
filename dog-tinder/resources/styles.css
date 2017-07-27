@@ -216,14 +216,18 @@ p {
   float: right;
   padding: 14px 16px;
 }
-#upload{
-  width: 170px;
-}
+
 #discussion{
   display: inline-block;
   align-items: center;
 }
-#button{
+#upload{
+  display: flex;
+}
+#upload1{
+  width: 175px;
+}
+.button{
   height: 20px;
   width: 20px;
   float: left;
