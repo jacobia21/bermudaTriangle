@@ -80,12 +80,10 @@ h2{
 	/*line-height: 20px*/
 }
 h3{
-  color:white;
-  text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;
-  font-family: monaco, Consolas, "Lucida Console", monospace;
-	font-size: 22px;
-	font-style: normal;
-	font-variant: normal;
+  color:#f55d3e;
+  text-shadow: -1px 2px #76bed0;
+  font-family: sans-serif;
+	font-size: 30px;
 	font-weight: 300;
 	/*line-height: 15.4px;*/
 }
