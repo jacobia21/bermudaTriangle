@@ -6,6 +6,7 @@ body {
   font-family: Monaco, monospace;
   font-size: 15px;
   font-weight: 200;
+  transition: 200ms ease;
 }
 
 img{
@@ -42,6 +43,12 @@ ul li a{
 }
 ul li a:hover {
   background-color: #010101;
+}
+ul li img{
+  height:400px;
+  width: 80px;
+  margin-left: 40px;
+  margin-top: 30px;
 }
 
 h1 {
