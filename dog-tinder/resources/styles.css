@@ -10,8 +10,8 @@ body {
 }
 
 img{
-  max-height: 210px;
-  max-width: 300px;
+  height: 210px;
+  width: 300px;
   margin-top: 15px;
   margin-bottom: 15px;
 }
@@ -28,14 +28,14 @@ a:visited {
 }
 
 ul {
-  margin: 0;
-  padding: 20px 0;
-  overflow: hidden;
-  font-family: Consolas, monaco, monospace;
-  font-size: 16px;
-  display: inline-flex;
-  flex-direction: column;
-  border-radius: 0px;
+    margin: 0;
+    padding: 20px 0;
+    overflow: hidden;
+    font-family: Consolas, monaco, monospace;
+    font-size: 16px;
+    display: inline-flex;
+    flex-direction: column;
+    border-radius: 0px;
 }
 ul li {
   list-style: none;
@@ -206,17 +206,6 @@ p {
   max-height: 225px;
   max-width: 300px;
 }
-.like-button{
-  float: left;
-  background-color: white;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-.like-button img {
-  height: 20px;
-  width: 20px;
-}
-
 
 /*  id's  */
 #lines{
@@ -228,9 +217,9 @@ p {
 }
 
 #dogOfWeek{
-  max-width: 300px;
-  width: 400px;
-  height: 310px;
+    max-width: 300px;
+    width: 400px;
+    height: 310px;
 }
 #intro{
   width: 1000px;
@@ -251,17 +240,10 @@ p {
 #upload1{
   width: 175px;
 }
-#dan{
-text-align: center;
-}
-.profile_info{
-  display: inline-flex;
-    line-height: 50%;
-}
-.profile_info h4{
-  padding-top: 10px;
-  padding-left: 5px;
-}
+
+
+
+
 .like-button{
   float: left;
   background-color: white;
@@ -272,4 +254,17 @@ text-align: center;
 }
 .liked {
   background-color: #7FFF00;
+}
+
+.ourimages{
+  justify-content: center;
+  display: flex;
+
+
+}
+.ourimages .images{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+
 }
