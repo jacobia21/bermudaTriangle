@@ -5,20 +5,18 @@
     <link type="text/css" rel="stylesheet" href="resources/styles.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript" src="resources/main.js"></script>
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Courgette">
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Boogaloo">
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Fira+Sans">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Courgette">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Boogaloo">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Fira+Sans">
   </head>
   <body>
     <h1><img src="resources/images.png"> Canine Companions <img src="resources/images.png"></h1></div>
     <div class="sidebar">
       <ul>
         <li><a href="/">Home</a></li>
-        {% if user %}
-        <li class="headerRight"><a href="/my_profile">{{username}}</a></li>
-        {% endif %}
-        <li><a href="/all_profiles">Other Profiles</a></li>
         <li><a href="/discuss">Discussion</a></li>
+        <li><a href="/all_profiles">All Profiles</a></li>
+        <li><p></p></li>
         <li class="headerRight">
           {% if user %}
           <a href="{{log_url}}">Logout</a>

@@ -13,11 +13,8 @@
     <div class="sidebar center">
       <ul>
         <li><a href="/">Home</a></li>
-        {% if user %}
-        <li class="headerRight"><a href="/my_profile">{{username}}</a></li>
-        {% endif %}
-        <li><a href="/all_profiles">Other Profiles</a></li>
         <li><a href="/discuss">Discussion</a></li>
+        <li><a href="/all_profiles">All Profiles</a></li>
         <li class="headerRight">
           {% if user %}
           <a href="{{log_url}}">Logout</a>
@@ -38,7 +35,7 @@
 
     <div class="container center margin"><h2>All Profiles</h2></div>
     {% for profile in profiles %}
-    <div class="darkBox">
+    <div class="container">
       <h3>Dog: <a href="/profile?id={{profile.key.urlsafe()}}">{{profile.dog_name}}</a> </h3>
       <h3>{{profile.name}}</h3>
     </div>
