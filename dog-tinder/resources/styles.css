@@ -245,3 +245,20 @@ p {
 .liked {
   background-color: #7FFF00;
 }
+
+.ourimages{
+  justify-content: center;
+  display: flex;
+
+
+}
+.ourimages .images{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+
+}
+
+.images{
+  min-height: 1000px;
+}
