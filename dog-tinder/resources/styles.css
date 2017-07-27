@@ -229,8 +229,10 @@ p {
   padding: 14px 16px;
 }
 
-#discussion{
-  padding: 0% 50%;
+.discussion {
+padding-left: 41%;
+padding-right: 0%;
+width: 140px;
 }
 
 #upload{
