@@ -93,8 +93,8 @@
         <h2> Dog Photos!</h2>
         {% if profile.key == user_id %}
         <h3>Here's your chance to show your cutest dog photos.</h3>
-        <form method="post" action="/profile/upload_photos" enctype="multipart/form-data">
-            <input type="file" accept="image/*" name="post_pic"/><br><br>
+        <form method="post" action="/profile/upload_photos" enctype="multipart/form-data" id="upload">
+            <input type="file" accept="image/*" name="post_pic" id="upload1"/>
             <input type="text" name="title" placeholder="Add a caption"/>
             <input type="submit" value="Post!"/>
         </form>
