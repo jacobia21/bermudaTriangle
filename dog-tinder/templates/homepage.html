@@ -9,50 +9,49 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Boogaloo">
   </head>
   <body>
-    <div class="header">
-      <h1><img src="resources/images.png"> Canine Companions <img src="resources/images.png"></h1></div>
-    <div class="sidebar center">
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/all_profiles">Other Profiles</a></li>
-      <li><a href="/discuss">Discussion</a></li>
-      <li class="headerRight">
+    <h1><img src="resources/images.png"> Canine Companions <img src="resources/images.png"></h1>
+    <div class="sidebar">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/all_profiles">Other Profiles</a></li>
+        <li><a href="/discuss">Discussion</a></li>
+        <li class="headerRight">
+          {% if user %}
+          <a href="{{log_url}}">Logout</a>
+          {% else %}
+          <a href="{{log_url}}">Login</a>
+          {% endif %}
+        </li>
         {% if user %}
-        <a href="{{log_url}}">Logout</a>
-        {% else %}
-        <a href="{{log_url}}">Login</a>
+        <li class="headerRight"><a href="/my_profile">{{username}}</a></li>
         {% endif %}
-      </li>
-      {% if user %}
-      <li class="headerRight"><a href="/my_profile">{{username}}</a></li>
-      {% endif %}
-      <div class="searchBar">
-        <input type="text" name= "Search Bar"/>
-        <input type="submit" value="Submit"/>
+        <div class="searchBar">
+          <input type="text" name= "Search Bar"/>
+          <input type="submit" value="Submit"/>
+        </div>
+      </ul>
+      <button class="sidebarbtn">
+        <img id="lines" src="resources/lines.png">
+      </button>
+    </div>
+
+
+    <div class="flex wrap">
+      <div id="intro" class="container center">
+        <h2>Welcome to Canine Companions! Our staff is dedicated to helping people across the
+          country to share in their love of pups and doggos and even connect with them later on. Through our website, you will
+          be able to create a profile for your four-legged friend and share photos of them with others across the country.
+        <h2>
       </div>
-    </ul>
-    <button class="sidebarbtn">
-      <span class="lines"><img src="resources/lines.png"></span>
-    </button>
-  </div>
-<div class="homepage">
-    <div class= "container center dogOfWeek">
-    <div class="ricky"><img src="resources/ricky.jpeg"></div>
-    <h2>Dog of the Week: </br>
-        Welcome Ricky
-    </h2>
+      <div id="dogOfWeek" class="container center">
+        <img src="resources/ricky.jpeg">
+        <h2>Dog of the Week: </br>
+            Welcome Ricky
+        </h2>
+      </div>
+      <div class="container center fullWidth">
+        Insert Photos Here!
+      </div>
     </div>
-    <div class= "container center newsletter">
-      <h2>Welcome to Canine Companions! Our staff is dedicated to helping people across the
-        country to share in their love of pups and doggos and even connect with them later on. Through our website, you will
-        be able to create a profile for your four-legged friend and share photos of them with others across the country.
-      <h2>
-
-    </div>
-    <div class="container center fullWidth">
-      Insert Photos Here!
-    </div>
-</div>
-
   </body>
 </html>
