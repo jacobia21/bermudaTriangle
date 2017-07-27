@@ -69,8 +69,8 @@ h3 {
 	font-size: 30px;
 	font-weight: 300;
 }
-h4 {
-  font-family: Monaco, monospace;
+h4{
+  font-family: 'Fira Sans';
   font-size: 20px;
   font-weight: 400;
 }
@@ -173,4 +173,15 @@ p {
 #searchBar{
   float: right;
   padding: 14px 16px;
+}
+.flex .post{
+  border: 2px solid #F7CB15;
+  text-align: center;
+}
+.flex .post h4{
+  margin-top:0;
+  font-size: 15px;
+}
+.flex .post img{
+  margin-bottom:0;
 }
