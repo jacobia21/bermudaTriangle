@@ -53,37 +53,36 @@
           <input type="submit" value="Submit"/>
         </form>
         {% endif %}
-        <div class= "profile_info">
-        <h1>
-          Name: {{profile.dog_name}}</br></br>
-          Age: {{profile.age}}</br></br>
-          Breed: {{profile.breed}}</br></br>
-          Hometown: {{profile.hometown}}</br></br>
+
+
+          <div class= "profile_info"><h3>Name:</h3> <h4>{{profile.dog_name}}</h4></div></br>
+          <div class= "profile_info"><h3>Age:</h3><h4> {{profile.age}}</h4></div></br>
+          <div class= "profile_info"><h3>Breed:</h3><h4> {{profile.breed}}</h4></div></br>
+          <div class= "profile_info"><h3>Hometown:</h3><h4> {{profile.hometown}}</h4></div></br>
 
           {% if profile.active %}
-          Active or Lazy: Active
+          <div class= "profile_info"><h3>Active or Lazy:</h3><h4> Active</h4></div></br>
           {% else %}
-          Active or Lazy: Lazy
-          {% endif %}<br><br>
+          <div class= "profile_info"><h3>Active or Lazy:</h3><h4> Lazy</h4></div></br>
+          {% endif %}
 
-          Favorite Toy: {{profile.fav_toy}}</br></br>
-          Dog's Bio: {{profile.bio}}</br></br>
+          <div class= "profile_info"><h3>Favorite Toy:</h3><h4> {{profile.fav_toy}}</h4></div></br>
+          <div class= "profile_info"><h3>Dog's Bio:</h3><h4> {{profile.bio}}</h4></div></br>
 
           {% if profile.kid_friendly %}
-          Friendly with kids: Yes
+          <div class= "profile_info"><h3>Friendly with kids:</h3><h4> Yes</h4></div></br>
           {% else %}
-          Friendly with kids: No
-          {% endif %}<br><br>
+          <div class= "profile_info"><h3>Friendly with kids:</h3><h4> No</h4></div></br>
+          {% endif %}
 
           {% if profile.vaccinated %}
-          Vaccinated: Yes
+          <div class= "profile_info"><h3>Vaccinated:</h3><h4> Yes</h4></div></br>
           {% else %}
-          Vaccinated: No
+          <div class= "profile_info"><h3>Vaccinated:</h3><h4> No</h4></div></br>
           {% endif %}
-        </h1>
-      </div>
+          
         {% if profile.key == user_id%}
-        <h4><a href="/profile/edit">Edit Profile</a></h4>
+        <div class= "profile_info"><h4><a href="/profile/edit">Edit Profile</a></h4></div></br>
         {% endif %}
       </div>
       <div class="inline-block leftEdge">
