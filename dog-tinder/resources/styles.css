@@ -213,35 +213,8 @@ p {
   display: inline-block;
   align-items: center;
 }
-#likebtn{
+#button{
   height: 20px;
   width: 20px;
   float: left;
-}
-
-a #btn{
-  display: block;
-  font-size: 18px;
-  border: 2px solid gray;
-  border-radius: 100px;
-  width: 100px;
-  height: 100px;
-  text-align: center;
-  line-height: 100px;
-}
-
-a:active #btn{
-  font-size: 18px;
-  border: 2px solid green;
-  border-radius: 100px;
-  width: 100px;
-  height: 100px;
-}
-
-a:target #btn {
-  font-size: 18px;
-  border: 2px solid red;
-  border-radius: 100px;
-  width: 100px;
-  height: 100px;
 }
