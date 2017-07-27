@@ -53,8 +53,8 @@
           <input type="submit" value="Submit"/>
         </form>
         {% endif %}
-
-        <h4>
+        <div class= "profile_info">
+        <h1>
           Name: {{profile.dog_name}}</br></br>
           Age: {{profile.age}}</br></br>
           Breed: {{profile.breed}}</br></br>
@@ -80,7 +80,8 @@
           {% else %}
           Vaccinated: No
           {% endif %}
-        </h4>
+        </h1>
+      </div>
         {% if profile.key == user_id%}
         <h4><a href="/profile/edit">Edit Profile</a></h4>
         {% endif %}
