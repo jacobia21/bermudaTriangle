@@ -174,6 +174,7 @@ class ProfileHandler(webapp2.RequestHandler):
         query = PicturePost.query(PicturePost.profile_key == profile_key).order(-PicturePost.time)
         posts = query.fetch()
         post_pics = []
+        liked_posts = []
 
         for post in posts:
             if post.pic:
@@ -181,10 +182,17 @@ class ProfileHandler(webapp2.RequestHandler):
             else:
                 post_pics.append("")
 
+            query = Like.query(Like.profile_key == profile_key, Like.pic_post_key==post.key)
+            likes = query.fetch()
+            if len(likes) > 0:
+                liked_posts.append(post)
+
+
         my_vars['profile'] = profile
         my_vars['pic'] = pic
         my_vars['posts'] = posts
         my_vars['post_pics'] = post_pics
+        my_vars['liked_posts'] = liked_posts
 
         temp = env.get_template("user_profile.html")
         self.response.out.write(temp.render(my_vars))
@@ -429,6 +437,41 @@ class LikePost(webapp2.RequestHandler):
         else:
             self.redirect("/"+url)
 
+class UnlikePost(webapp2.RequestHandler):
+    def post(self):
+        user_info = get_user_info('/all_profiles')
+        user = user_info['user']
+
+        if not user:
+            self.redirect('/')
+
+        profile_key = ndb.Key('Profile',user.nickname())
+        profile = profile_key.get()
+
+        if not profile:
+            profile = Profile(
+                name = user_info['username']
+            )
+        profile.key = profile_key
+        profile.put()
+
+        post_key = ndb.Key(urlsafe=self.request.get('id'))
+        post = pic_post_key.get()
+
+        query = Like.query(Like.profile_key == profile_key, Like.pic_post_key==post.key)
+        likes = query.fetch()
+        for like in like:
+            post.likes = post.likes - 1
+            like.delete()
+        post.put()
+
+        url = self.request.get("url")
+        uid = self.request.get("uid")
+        if uId:
+            self.redirect("/"+url+"?id="+uid)
+        else:
+            self.redirect("/"+url)
+
 class CustomQuery(webapp2.RequestHandler):
     def get(self):
 
@@ -450,6 +493,9 @@ app = webapp2.WSGIApplication([
     ('/profile/submit_changes', SaveProfileChanges),
     ('/profile/upload_profile_pic', UploadProfilePic),
     ('/profile/upload_photos', PicturePostMaker),
+
+    ('/likepost', LikePost),
+    ('/unlikepost', UnlikePost),
 
     ('/test_headers', TestHeaderPage),
     ('/run_query', CustomQuery)
