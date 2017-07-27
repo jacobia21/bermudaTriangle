@@ -11,7 +11,7 @@
   </head>
   <body>
     <div class="header">
-      <h1><img src="resources/images.png">   Canine Companions <img src="resources/images.png"></h1></div>
+      <h1><img src="resources/images.png"> Canine Companions <img src="resources/images.png"></h1></div>
     <div class="sidebar">
     <ul>
       <li><a href="/">Home</a></li>
@@ -89,12 +89,18 @@
       <div class="vertical leftEdge">
         <!--right side-->
         <h2> Dog Photos!</h2>
+        {% if profile.key == user_id %}
         <h3>Here's your chance to show your cutest dog photos.</h3>
         <form method="post" action="/profile/upload_photos" enctype="multipart/form-data">
             <input type="file" accept="image/*" name="post_pic"/><br><br>
             <input type="text" name="title" placeholder="Add a caption"/>
             <input type="submit" value="Post!"/>
         </form>
+<<<<<<< HEAD
+=======
+        {% endif %}
+
+>>>>>>> e63d5667d62f600b70343b5ff98c06c88c18b37b
         <div class="flex">
           {% for post in posts %}
           <span class="post">
