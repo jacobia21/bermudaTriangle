@@ -13,7 +13,6 @@
     <div class="sidebar">
       <ul>
         <li><a href="/">Home</a></li>
-        <li class="headerRight"><a href="/my_profile">{{username}}</a></li>
         <li><a href="/all_profiles">Other Profiles</a></li>
         <li><a href="/discuss">Discussion</a></li>
         <li class="headerRight">
@@ -24,7 +23,7 @@
           {% endif %}
         </li>
         {% if user %}
-
+        <li class="headerRight"><a href="/my_profile">{{username}}</a></li>
         {% endif %}
         <div class="searchBar">
           <input type="text" name= "Search Bar"/>
