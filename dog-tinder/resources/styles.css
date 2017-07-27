@@ -163,6 +163,7 @@ p {
   background-color: lightslategrey;
   height: 100%;
   transition: .3s;
+  width: 190px;
 }
 .active {
   left: 0;
