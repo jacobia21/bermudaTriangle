@@ -220,7 +220,10 @@ class TestHeaderPage(webapp2.RequestHandler):
     def get(self):
         temp = env.get_template("test_headers.html")
         self.response.out.write(temp.render())
-
+class AboutUsPage(webapp2.RequestHandler):
+    def get(self):
+        temp = env.get_template("about.html")
+        self.response.out.write(temp.render())
 
 #Datastore page handler classes
 
@@ -390,6 +393,7 @@ app = webapp2.WSGIApplication([
     ('/profile/edit', EditProfile),
     ('/all_profiles', AllProfilesPage),
     ('/my_profile', MyProfile),
+    ('/about_us', AboutUsPage),
 
     ('/discuss/makepost', DiscussPostMaker),
     ('/discuss/send_comment', CommentMaker),

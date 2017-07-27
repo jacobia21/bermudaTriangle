@@ -39,7 +39,6 @@ ul {
 }
 ul li {
   list-style: none;
-  border-bottom: 1px solid rgba(0,0,0,0.2);
 }
 ul li a{
   padding: 10px 20px;
@@ -163,6 +162,7 @@ p {
   background-color: lightslategrey;
   height: 100%;
   transition: .3s;
+  width: 190px;
 }
 .active {
   left: 0;
@@ -209,6 +209,7 @@ p {
 #dogOfWeek{
     max-width: 300px;
     width: 400px;
+    height: 310px;
 }
 #intro{
   width: 1000px;
