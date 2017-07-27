@@ -45,14 +45,21 @@
           be able to create a profile for your four-legged friend and share photos of them with others across the country.
         <h2>
       </div>
-      <div id="dogOfWeek" class="container center">
-        <img src="resources/ricky.jpeg">
+      <span id="dogOfWeek" class="post">
+        <div><img src="resources/ricky.jpeg"></div>
         <h2>Dog of the Week: </br>
             Welcome Ricky
         </h2>
-      </div>
-      <div class="container center fullWidth">
-      </div>
+
+      </span>
+      {% for post in posts %}
+      <span class="post">
+        <div><img src="{{post_pics[posts.index(post)]}}"></div>
+        <input type="image" id="button" src = "resources/emptypaw.png" style= "color:white" onclick="setColor('button', '#101010');"/>
+        <a href="/profile?id={{post.profile_key.urlsafe()}}">{{post.profile_key.get().name.split('@')[0]}}</a>: {{post.title}}
+      </span>
+      {% endfor %}
+
     </div>
   </body>
 </html>
