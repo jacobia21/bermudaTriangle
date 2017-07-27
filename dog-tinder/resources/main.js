@@ -11,7 +11,7 @@ function setColor(btn, color){
         count=1;
     }
     else{
-        property.style.backgroundColor = "#7FFF00"
+        property.style.backgroundColor = "#f55d3e"
         count=0;
     }
 
