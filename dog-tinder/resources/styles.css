@@ -241,3 +241,22 @@ p {
 #upload1{
   width: 175px;
 }
+.profile_info{
+  display: inline-flex;
+    line-height: 50%;
+}
+.profile_info h4{
+  padding-top: 10px;
+  padding-left: 5px;
+}
+.like-button{
+  float: left;
+  background-color: white;
+}
+.like-button img {
+  height: 20px;
+  width: 20px;
+}
+.liked {
+  background-color: #7FFF00;
+}
