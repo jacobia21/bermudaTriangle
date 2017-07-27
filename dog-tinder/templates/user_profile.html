@@ -103,9 +103,9 @@
         <div class="flex">
           {% for post in posts %}
           <span class="post">
-            <img src="{{post_pics[posts.index(post)]}}">
+            <img src="{{post_pics[posts.index(post)]}}"></br>
+            <input type="image" src="resources/emptypaw.png" name="saveForm" id="likebtn" />
             <h4><a href="my_profile">{{username}}</a> {{post.title}}</h4>
-            <img id="likebtn" src="resources/emptypaw.png">
           </span>
           {% endfor %}
         </div>
