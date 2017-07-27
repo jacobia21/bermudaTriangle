@@ -5,5 +5,13 @@ $(document).ready(function() {
   });
 });
 function setColor(e){
-  $(e.currentTarget).toggleClass('liked');
+  var img = $(e.currentTarget).find("img");
+  var imageStr = $(img).attr("src").split("/");
+  imageStr = imageStr[imageStr.length-1];
+  var empty = "emptypaw.png";
+  var full = "filledpaw.png";
+  var startUrl = "../resources/"
+
+  if (imageStr==empty) $(img).attr("src",startUrl+full);
+  else $(img).attr("src",startUrl+empty);
 }
