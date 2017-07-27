@@ -243,6 +243,7 @@ p {
 }
 #dan{
 text-align: center;
+font-size: 40px;
 }
 .profile_info{
   display: inline-flex;
