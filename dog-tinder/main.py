@@ -20,6 +20,7 @@ import jinja2
 import logging
 import webapp2
 from google.appengine.api import users
+from google.appengine.api import images
 from google.appengine.ext import ndb
 
 env = jinja2.Environment(loader = jinja2.FileSystemLoader("templates"))
@@ -362,8 +363,16 @@ class UploadProfilePic(webapp2.RequestHandler):
         profile_key = ndb.Key('Profile',user.nickname())
         profile = profile_key.get()
 
+        img_bin = self.request.get('profile_pic')
+
+        #img = images.Image(img_bin)
+        #if img.width>200 or img.height>200:
+        #    img.resize(200,200)
+        #    img_bin = img.execute_transforms()
+
+
         if profile:
-            profile.profile_pic = self.request.get('profile_pic')
+            profile.profile_pic = img_bin
             profile.key = profile_key
             profile.put()
 

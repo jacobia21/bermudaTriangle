@@ -5,6 +5,9 @@
     <link type="text/css" rel="stylesheet" href="resources/styles.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript" src="resources/main.js"></script>
+    <script>
+
+    </script>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Courgette">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Boogaloo">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Fira+Sans">
@@ -54,35 +57,34 @@
         </form>
         {% endif %}
 
+        <div class= "profile_info"><h3>Name:</h3> <h4>{{profile.dog_name}}</h4></div>
+        <div class= "profile_info"><h3>Age:</h3><h4> {{profile.age}}</h4></div>
+        <div class= "profile_info"><h3>Breed:</h3><h4> {{profile.breed}}</h4></div>
+        <div class= "profile_info"><h3>Hometown:</h3><h4> {{profile.hometown}}</h4></div>
 
-          <div class= "profile_info"><h3>Name:</h3> <h4>{{profile.dog_name}}</h4></div></br>
-          <div class= "profile_info"><h3>Age:</h3><h4> {{profile.age}}</h4></div></br>
-          <div class= "profile_info"><h3>Breed:</h3><h4> {{profile.breed}}</h4></div></br>
-          <div class= "profile_info"><h3>Hometown:</h3><h4> {{profile.hometown}}</h4></div></br>
+        {% if profile.active %}
+        <div class= "profile_info"><h3>Active or Lazy:</h3><h4> Active</h4></div>
+        {% else %}
+        <div class= "profile_info"><h3>Active or Lazy:</h3><h4> Lazy</h4></div>
+        {% endif %}
 
-          {% if profile.active %}
-          <div class= "profile_info"><h3>Active or Lazy:</h3><h4> Active</h4></div></br>
-          {% else %}
-          <div class= "profile_info"><h3>Active or Lazy:</h3><h4> Lazy</h4></div></br>
-          {% endif %}
+        <div class= "profile_info"><h3>Favorite Toy:</h3><h4> {{profile.fav_toy}}</h4></div>
+        <div class= "profile_info"><h3>Dog's Bio:</h3><h4> {{profile.bio}}</h4></div>
 
-          <div class= "profile_info"><h3>Favorite Toy:</h3><h4> {{profile.fav_toy}}</h4></div></br>
-          <div class= "profile_info"><h3>Dog's Bio:</h3><h4> {{profile.bio}}</h4></div></br>
+        {% if profile.kid_friendly %}
+        <div class= "profile_info"><h3>Friendly with kids:</h3><h4> Yes</h4></div>
+        {% else %}
+        <div class= "profile_info"><h3>Friendly with kids:</h3><h4> No</h4></div>
+        {% endif %}
 
-          {% if profile.kid_friendly %}
-          <div class= "profile_info"><h3>Friendly with kids:</h3><h4> Yes</h4></div></br>
-          {% else %}
-          <div class= "profile_info"><h3>Friendly with kids:</h3><h4> No</h4></div></br>
-          {% endif %}
-
-          {% if profile.vaccinated %}
-          <div class= "profile_info"><h3>Vaccinated:</h3><h4> Yes</h4></div></br>
-          {% else %}
-          <div class= "profile_info"><h3>Vaccinated:</h3><h4> No</h4></div></br>
-          {% endif %}
+        {% if profile.vaccinated %}
+        <div class= "profile_info"><h3>Vaccinated:</h3><h4> Yes</h4></div>
+        {% else %}
+        <div class= "profile_info"><h3>Vaccinated:</h3><h4> No</h4></div>
+        {% endif %}
 
         {% if profile.key == user_id%}
-        <div class= "profile_info"><h4><a href="/profile/edit">Edit Profile</a></h4></div></br>
+        <div class= "profile_info"><h4><a href="/profile/edit">Edit Profile</a></h4></div>
         {% endif %}
       </div>
       <div class="inline-block leftEdge">
@@ -101,7 +103,14 @@
           {% for post in posts %}
           <span class="post">
             <div><img src="{{post_pics[posts.index(post)]}}"></div>
-            <span class="like-button flex"><img src="../resources/emptypaw.png"> &nbsp;{{post.likes}}</span>
+            <span class="like-button flex">
+              {% if post in liked_posts %}
+              <img src="../resources/filledpaw.png">
+              {% else %}
+              <img src="../resources/emptypaw.png">
+              {% endif %}
+              &nbsp;{{post.likes}}
+            </span>
             <span class="flex flex-center">
               <a href="/profile?id={{post.profile_key.urlsafe()}}">{{post.profile_key.get().name.split('@')[0]}}</a>:
               <span>{{post.title}}</span>

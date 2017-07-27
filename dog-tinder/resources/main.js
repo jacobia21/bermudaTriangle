@@ -12,6 +12,12 @@ function setColor(e){
   var full = "filledpaw.png";
   var startUrl = "../resources/"
 
-  if (imageStr==empty) $(img).attr("src",startUrl+full);
-  else $(img).attr("src",startUrl+empty);
+  if (imageStr==empty) {
+    $(img).attr("src",startUrl+full);
+    //window.location = "/likepost?uid="+"&";
+  }
+  else {
+    $(img).attr("src",startUrl+empty);
+    //window.location = "/unlikepost"
+  }
 }
