@@ -113,6 +113,7 @@ p {
 }
 .post img{
   margin-bottom:0;
+  margin-top: 0;
 }
 
 /* css pieces  */
@@ -168,6 +169,21 @@ p {
   border: none;
   outline: none;
 }
+.flex .post{
+  border: 2px solid #F7CB15;
+  text-align: center;
+  background-color: #FFFFFF;
+  margin: 25px 5px;
+}
+.flex .post h4 {
+  margin-top:0;
+  font-size: 15px;
+}
+.flex .post h4 a{
+  background-color: transparent;
+  color: darkblue;
+  text-decoration: none;
+}
 
 /*  id's  */
 #lines{
@@ -178,15 +194,6 @@ p {
   left:0px;
 }
 
-.flex .post{
-  border: 2px solid #F7CB15;
-  text-align: center;
-  background-color: #daeaf1;
-}
-.flex .post h4{
-  margin-top:0;
-  font-size: 15px;
-}
 #dogOfWeek{
     max-width: 300px;
     width: 400px;
@@ -198,4 +205,7 @@ p {
 #searchBar{
   float: right;
   padding: 14px 16px;
+}
+#upload{
+  width: 170px;
 }
