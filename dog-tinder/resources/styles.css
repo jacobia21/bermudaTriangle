@@ -191,10 +191,11 @@ p {
 .post div {
   width: 300px;
 }
-.post img:not(.like-button img){
+.post img{
   width: auto;
   height: auto;
   max-height: 225px;
+  max-width: 300px;
 }
 
 /*  id's  */
