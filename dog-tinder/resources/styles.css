@@ -213,3 +213,7 @@ p {
   display: inline-block;
   align-items: center;
 }
+#likebtn{
+  height: 20px;
+  width: 20px;
+}
