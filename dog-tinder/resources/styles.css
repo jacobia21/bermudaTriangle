@@ -96,8 +96,16 @@ p {
   padding: 10px;
   margin: 25px 5px;
 }
-.post {
-
+.post{
+  border: 2px solid #F7CB15;
+  text-align: center;
+}
+.post h4{
+  margin-top:0;
+  font-size: 15px;
+}
+.post img{
+  margin-bottom:0;
 }
 
 /* css pieces  */
@@ -133,9 +141,8 @@ p {
 .sidebar {
   position: fixed;
   top: 0;
-  left: -25%;
+  left: -195px;
   background-color: lightslategrey;
-  width: 25%;
   height: 100%;
   transition: .3s;
 }
@@ -173,15 +180,4 @@ p {
 #searchBar{
   float: right;
   padding: 14px 16px;
-}
-.flex .post{
-  border: 2px solid #F7CB15;
-  text-align: center;
-}
-.flex .post h4{
-  margin-top:0;
-  font-size: 15px;
-}
-.flex .post img{
-  margin-bottom:0;
 }

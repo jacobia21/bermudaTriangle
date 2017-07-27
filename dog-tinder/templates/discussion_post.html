@@ -31,7 +31,7 @@
         </div>
       </ul>
       <button class="sidebarbtn">
-        <img id="lines" src="resources/lines.png">
+        <img id="lines" src="../resources/lines.png">
       </button>
     </div>
 
@@ -58,7 +58,7 @@
       {% endif %}
     </div>
     {% for comment in comments %}
-    <div class="lightBox margin">
+    <div class="container margin">
       <i><strong>{{comment.profile_key.get().name}}<strong></i>
       <p>{{comment.content}}</p>
       <i>Posted: {{comment.time}}</i>
