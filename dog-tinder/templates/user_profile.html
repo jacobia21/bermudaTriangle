@@ -5,9 +5,9 @@
     <link type="text/css" rel="stylesheet" href="resources/styles.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript" src="resources/main.js"></script>
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Courgette">
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Boogaloo">
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Fira+Sans">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Courgette">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Boogaloo">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Fira+Sans">
   </head>
   <body>
     <h1><img src="resources/images.png"> Canine Companions <img src="resources/images.png"></h1></div>
@@ -80,7 +80,7 @@
           {% else %}
           <div class= "profile_info"><h3>Vaccinated:</h3><h4> No</h4></div></br>
           {% endif %}
-          
+
         {% if profile.key == user_id%}
         <div class= "profile_info"><h4><a href="/profile/edit">Edit Profile</a></h4></div></br>
         {% endif %}
@@ -101,7 +101,13 @@
           {% for post in posts %}
           <span class="post">
             <div><img src="{{post_pics[posts.index(post)]}}"></div>
-            <span class="like-button"><img src="../resources/emptypaw.png"></span>
+            <span class="like-button flex">
+              {% if post.likes>0 %}
+              <img src="../resources/filledpaw.png">
+              {% else %}
+              <img src="../resources/emptypaw.png">
+              {% endif %}
+              &nbsp;{{post.likes}}</span>
             <a href="/profile?id={{post.profile_key.urlsafe()}}">{{post.profile_key.get().name.split('@')[0]}}</a>: {{post.title}}
           </span>
           {% endfor %}
