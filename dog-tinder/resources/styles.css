@@ -295,6 +295,7 @@ ul li a{
 .flex .post{
   border: 2px solid #F7CB15;
   text-align: center;
+  background-color: #daeaf1;
 }
 .flex .post h4{
   margin-top:0;
