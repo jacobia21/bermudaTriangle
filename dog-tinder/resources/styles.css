@@ -88,7 +88,7 @@ h3{
 	/*line-height: 15.4px;*/
 }
 h4{
-  font-family: monaco, Consolas, "Lucida Console", monospace;
+  font-family: 'Fira Sans';
   font-size: 20px;
   font-weight: 400;
   font-variant: normal;
@@ -291,4 +291,19 @@ ul li a{
   position: relative;
   top: -10px;
   left:0px;
+}
+.flex .post{
+  border: 2px solid #F7CB15;
+  border-radius: 25px;
+  text-align: center;
+}
+.flex .post h4{
+  margin-top:0;
+  font-size: 15px;
+}
+.flex .post img{
+  margin-bottom:0;
+}
+.flex{
+  margin: 5px;
 }

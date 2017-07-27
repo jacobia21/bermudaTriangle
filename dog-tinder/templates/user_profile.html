@@ -7,6 +7,7 @@
     <script type="text/javascript" src="resources/main.js"></script>
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Courgette">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Boogaloo">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Fira+Sans">
   </head>
   <body>
     <div class="header">
@@ -97,8 +98,8 @@
         <div class="flex">
           {% for post in posts %}
           <span class="post">
-            <h4>{{post.title}}</h4>
             <img src="{{post_pics[posts.index(post)]}}">
+            <h4>{{username}}: {{post.title}}</h4>
           </span>
           {% endfor %}
         </div>
