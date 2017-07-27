@@ -13,6 +13,9 @@
     <div class="sidebar">
       <ul>
         <li><a href="/">Home</a></li>
+        {% if user %}
+        <li class="headerRight"><a href="/my_profile">{{username}}</a></li>
+        {% endif %}
         <li><a href="/discuss">Discussion</a></li>
         <li><a href="/all_profiles">All Profiles</a></li>
         <li class="headerRight">
@@ -42,7 +45,7 @@
 
     {% if user %}
     <div class="container center margin"><h2>Make a Post</h2></div>
-    <form method="post" action="/discuss/makepost">
+    <form method="post" action="/discuss/makepost" id="discussion">
       <input type="text" name="title" placeholder="Title"/><br><br>
       <textarea rows="5" cols="40" name="content" placeholder="Let's Talk Dog!"></textarea></br>
       <input type=submit value='Submit'/>

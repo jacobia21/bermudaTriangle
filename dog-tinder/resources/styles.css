@@ -70,7 +70,7 @@ h2 {
 	font-weight: 500;
 }
 h3 {
-  font-family: Boogaloo;
+  font-family: 'Boogaloo';
   color:#f55d3e;
   text-shadow: -1px 2px #76bed0;
 	font-size: 30px;
@@ -208,4 +208,8 @@ p {
 }
 #upload{
   width: 170px;
+}
+#discussion{
+  display: inline-block;
+  align-items: center;
 }
