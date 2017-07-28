@@ -107,6 +107,7 @@ class Like(ndb.Model):
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         my_vars = get_user_info('/')
+        user = my_vars['user']
 
         query = PicturePost.query().order(-PicturePost.time)
         posts = query.fetch()
@@ -118,11 +119,12 @@ class MainHandler(webapp2.RequestHandler):
                 post_pics.append("data:image;base64," + binascii.b2a_base64(post.pic))
             else:
                 post_pics.append("")
-                
-            query = Like.query(Like.profile_key == my_vars['user_id'], Like.pic_post_key==post.key)
-            likes = query.fetch()
-            if len(likes) > 0:
-                liked_posts.append(post)
+
+            if user:
+                query = Like.query(Like.profile_key == my_vars['user_id'], Like.pic_post_key==post.key)
+                likes = query.fetch()
+                if len(likes) > 0:
+                    liked_posts.append(post)
 
         my_vars['posts'] = posts
         my_vars['post_pics'] = post_pics
@@ -190,10 +192,11 @@ class ProfileHandler(webapp2.RequestHandler):
             else:
                 post_pics.append("")
 
-            query = Like.query(Like.profile_key == my_vars['user_id'], Like.pic_post_key==post.key)
-            likes = query.fetch()
-            if len(likes) > 0:
-                liked_posts.append(post)
+            if user:
+                query = Like.query(Like.profile_key == my_vars['user_id'], Like.pic_post_key==post.key)
+                likes = query.fetch()
+                if len(likes) > 0:
+                    liked_posts.append(post)
 
 
         my_vars['profile'] = profile
