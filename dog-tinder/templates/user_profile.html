@@ -38,7 +38,7 @@
       </button>
     </div>
 
-    <div style="hidden">
+    <div hidden>
       <form method="post" action="/likepost?url=profile">
         <input id="postLike" type="text" name="id"/>
         <input class="uidInput" type="text" name="uid"/>
@@ -72,34 +72,34 @@
         </form>
         {% endif %}
 
-        <div class= "profile_info"><h3>Name:</h3> <h4>{{profile.dog_name}}</h4></div><br>
-        <div class= "profile_info"><h3>Age:</h3><h4> {{profile.age}}</h4></div><br>
-        <div class= "profile_info"><h3>Breed:</h3><h4> {{profile.breed}}</h4></div><br>
-        <div class= "profile_info"><h3>Hometown:</h3><h4> {{profile.hometown}}</h4></div><br>
+        <div class= "profile_info"><h3>Name:</h3> <h4>{{profile.dog_name}}</h4></div>
+        <div class= "profile_info"><h3>Age:</h3><h4> {{profile.age}}</h4></div>
+        <div class= "profile_info"><h3>Breed:</h3><h4> {{profile.breed}}</h4></div>
+        <div class= "profile_info"><h3>Hometown:</h3><h4> {{profile.hometown}}</h4></div>
 
         {% if profile.active %}
-        <div class= "profile_info"><h3>Active or Lazy:</h3><h4> Active</h4></div><br>
+        <div class= "profile_info"><h3>Active or Lazy:</h3><h4> Active</h4></div>
         {% else %}
-        <div class= "profile_info"><h3>Active or Lazy:</h3><h4> Lazy</h4></div><br>
+        <div class= "profile_info"><h3>Active or Lazy:</h3><h4> Lazy</h4></div>
         {% endif %}
 
-        <div class= "profile_info"><h3>Favorite Toy:</h3><h4> {{profile.fav_toy}}</h4></div><br>
-        <div class= "profile_info"><h3>Dog's Bio:</h3><h4> {{profile.bio}}</h4></div><br>
+        <div class= "profile_info"><h3>Favorite Toy:</h3><h4> {{profile.fav_toy}}</h4></div>
+        <div class= "profile_info"><h3>Dog's Bio:</h3><h4> {{profile.bio}}</h4></div>
 
         {% if profile.kid_friendly %}
-        <div class= "profile_info"><h3>Friendly with kids:</h3><h4> Yes</h4></div><br>
+        <div class= "profile_info"><h3>Friendly with kids:</h3><h4> Yes</h4></div>
         {% else %}
-        <div class= "profile_info"><h3>Friendly with kids:</h3><h4> No</h4></div><br>
+        <div class= "profile_info"><h3>Friendly with kids:</h3><h4> No</h4></div>
         {% endif %}
 
         {% if profile.vaccinated %}
-        <div class= "profile_info"><h3>Vaccinated:</h3><h4> Yes</h4></div><br>
+        <div class= "profile_info"><h3>Vaccinated:</h3><h4> Yes</h4></div>
         {% else %}
-        <div class= "profile_info"><h3>Vaccinated:</h3><h4> No</h4></div><br>
+        <div class= "profile_info"><h3>Vaccinated:</h3><h4> No</h4></div>
         {% endif %}
 
         {% if profile.key == user_id%}
-        <div class= "profile_info"><h4><a href="/profile/edit">Edit Profile</a></h4></div><br>
+        <div class= "profile_info"><h4><a href="/profile/edit">Edit Profile</a></h4></div>
         {% endif %}
       </div>
       <div class="inline-block leftEdge">

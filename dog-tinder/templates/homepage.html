@@ -35,6 +35,17 @@
       </button>
     </div>
 
+    <div hidden>
+      <form method="post" action="/likepost?url=">
+        <input id="postLike" type="text" name="id"/>
+        <input class="submitForm" type="submit">
+      </form>
+
+      <form method="post" action="/unlikepost?url=">
+        <input id="postUnlike" type="text" name="id"/>
+        <input class="submitForm" type="submit">
+      </form>
+    </div>
 
     <div class="flex wrap">
       <div id="intro" class="container center">
@@ -64,12 +75,14 @@
       <span class="post">
         <div><img src="{{post_pics[posts.index(post)]}}"></div>
         <span class="like-button flex">
+          <em hidden>{{post.key.urlsafe()}}</em>
           {% if post in liked_posts %}
           <img src="../resources/filledpaw.png">
           {% else %}
           <img src="../resources/emptypaw.png">
           {% endif %}
-          &nbsp;{{post.likes}}</span>
+          &nbsp;{{post.likes}}
+        </span>
         <span class="flex flex-center">
           <a href="/profile?id={{post.profile_key.urlsafe()}}">{{post.profile_key.get().name.split('@')[0]}}</a>:
           <span>{{post.title}}</span>

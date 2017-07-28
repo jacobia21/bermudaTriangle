@@ -112,14 +112,21 @@ class MainHandler(webapp2.RequestHandler):
         posts = query.fetch()
 
         post_pics = []
+        liked_posts = []
         for post in posts:
             if post.pic:
                 post_pics.append("data:image;base64," + binascii.b2a_base64(post.pic))
             else:
                 post_pics.append("")
+                
+            query = Like.query(Like.profile_key == my_vars['user_id'], Like.pic_post_key==post.key)
+            likes = query.fetch()
+            if len(likes) > 0:
+                liked_posts.append(post)
 
         my_vars['posts'] = posts
         my_vars['post_pics'] = post_pics
+        my_vars['liked_posts'] = liked_posts
 
         temp = env.get_template("homepage.html")
         self.response.out.write(temp.render(my_vars))
@@ -183,7 +190,7 @@ class ProfileHandler(webapp2.RequestHandler):
             else:
                 post_pics.append("")
 
-            query = Like.query(Like.profile_key == profile_key, Like.pic_post_key==post.key)
+            query = Like.query(Like.profile_key == my_vars['user_id'], Like.pic_post_key==post.key)
             likes = query.fetch()
             if len(likes) > 0:
                 liked_posts.append(post)
@@ -468,7 +475,7 @@ class UnlikePost(webapp2.RequestHandler):
         post_key = ndb.Key(urlsafe=self.request.get('id'))
         post = post_key.get()
 
-        query = Like.query(Like.profile_key == profile_key, Like.pic_post_key==post.key)
+        query = Like.query(Like.profile_key == user_info['user_id'], Like.pic_post_key==post.key)
         likes = query.fetch()
         for like in likes:
             post.likes = post.likes - 1
