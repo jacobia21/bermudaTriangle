@@ -6,7 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript" src="resources/main.js"></script>
     <script>
-
+      profileID = '{{profile.key.urlsafe()}}';
     </script>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Courgette">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Boogaloo">
@@ -36,6 +36,20 @@
       <button class="sidebarbtn">
         <img id="lines" src="resources/lines.png">
       </button>
+    </div>
+
+    <div style="hidden">
+      <form method="post" action="/likepost?url=profile">
+        <input id="postLike" type="text" name="id"/>
+        <input class="uidInput" type="text" name="uid"/>
+        <input class="submitForm" type="submit">
+      </form>
+
+      <form method="post" action="/unlikepost?url=profile">
+        <input id="postUnlike" type="text" name="id"/>
+        <input class="uidInput" type="text" name="uid"/>
+        <input class="submitForm" type="submit">
+      </form>
     </div>
 
 
@@ -105,6 +119,7 @@
           <span class="post">
             <div><img src="{{post_pics[posts.index(post)]}}"></div>
             <span class="like-button flex">
+              <em hidden>{{post.key.urlsafe()}}</em>
               {% if post in liked_posts %}
               <img src="../resources/filledpaw.png">
               {% else %}

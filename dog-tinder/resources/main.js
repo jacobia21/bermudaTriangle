@@ -1,3 +1,5 @@
+var profileID = '';
+
 $(document).ready(function() {
   $('.like-button').click(setColor);
   $('.sidebarbtn').click(function() {
@@ -12,12 +14,20 @@ function setColor(e){
   var full = "filledpaw.png";
   var startUrl = "../resources/"
 
+  var key = $("span").has(e.currentTarget).find("em").html();
+
   if (imageStr==empty) {
     $(img).attr("src",startUrl+full);
-    //window.location = "/likepost?uid="+"&";
+    $('#postLike').val(key);
+    var form = $('form').has('#postLike');
+    form.find(".uidInput").val(profileID);
+    form.find(".submitForm").click();
   }
   else {
     $(img).attr("src",startUrl+empty);
-    //window.location = "/unlikepost"
+    $('#postUnlike').val(key);
+    var form = $('form').has("#postUnlike");
+    form.find(".uidInput").val(profileID);
+    form.find(".submitForm").click();
   }
 }

@@ -428,11 +428,11 @@ class LikePost(webapp2.RequestHandler):
         profile.put()
 
         post_key = ndb.Key(urlsafe=self.request.get('id'))
-        post = pic_post_key.get()
+        post = post_key.get()
         post.likes = post.likes + 1
         post.put()
 
-        like_key = ndb.Key('Like',post.title+user.nickname()+datetime.datetime.now())
+        like_key = ndb.Key('Like',post.title+user.nickname()+str(datetime.datetime.now()))
         like = Like(
             pic_post_key = post_key,
             profile_key = profile.key
@@ -442,7 +442,7 @@ class LikePost(webapp2.RequestHandler):
 
         url = self.request.get("url")
         uid = self.request.get("uid")
-        if uId:
+        if uid:
             self.redirect("/"+url+"?id="+uid)
         else:
             self.redirect("/"+url)
@@ -466,18 +466,18 @@ class UnlikePost(webapp2.RequestHandler):
         profile.put()
 
         post_key = ndb.Key(urlsafe=self.request.get('id'))
-        post = pic_post_key.get()
+        post = post_key.get()
 
         query = Like.query(Like.profile_key == profile_key, Like.pic_post_key==post.key)
         likes = query.fetch()
-        for like in like:
+        for like in likes:
             post.likes = post.likes - 1
-            like.delete()
+            like.key.delete()
         post.put()
 
         url = self.request.get("url")
         uid = self.request.get("uid")
-        if uId:
+        if uid:
             self.redirect("/"+url+"?id="+uid)
         else:
             self.redirect("/"+url)
