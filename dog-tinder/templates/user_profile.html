@@ -5,9 +5,8 @@
     <link type="text/css" rel="stylesheet" href="resources/styles.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript" src="resources/main.js"></script>
-    <script>
-      profileID = '{{profile.key.urlsafe()}}';
-    </script>
+    {% if user %}<script>userLoggedIn = true;</script>{% endif %}
+    <script>profileID = '{{profile.key.urlsafe()}}';</script>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Courgette">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Boogaloo">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Fira+Sans">

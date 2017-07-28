@@ -1,4 +1,5 @@
 var profileID = '';
+var userLoggedIn = false;
 
 $(document).ready(function() {
   $('.like-button').click(setColor);
@@ -7,6 +8,7 @@ $(document).ready(function() {
   });
 });
 function setColor(e){
+  if (!userLoggedIn) return alert("You must be logged in to like a post.");
   var img = $(e.currentTarget).find("img");
   var imageStr = $(img).attr("src").split("/");
   imageStr = imageStr[imageStr.length-1];
