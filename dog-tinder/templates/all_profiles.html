@@ -35,11 +35,11 @@
       </button>
     </div>
 
-    <div class="container center margin"><h2>All Profiles</h2></div>
+    <h2 class="center">All Profiles</h2>
     {% for profile in profiles %}
     <div class="container">
       <h3>Dog: <a href="/profile?id={{profile.key.urlsafe()}}">{{profile.dog_name}}</a> </h3>
-      <h3>{{profile.name}}</h3>
+      <h4>Owner: {{profile.name}}</h4>
     </div>
     {% endfor %}
   </body>

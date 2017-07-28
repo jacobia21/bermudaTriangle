@@ -36,15 +36,15 @@
     </div>
 
 
-    <div class="container center margin"><h2>Discussion Board</h2></div>
-    <p>Talk with your fellow Canine Companions users and share your questions, concerns, and
+    <h3 class="dan">Discussion Board</h3>
+    <div class="container center"><h2>Talk with your fellow Canine Companions users and share your questions, concerns, and
       opinions about dogs in our interactive forum! Please keep all comments and forums
       appropriate and avoid inappropriate language and comments.
-    </p>
+    </h2></div>
 
     {% if user %}
-    <div class="container center margin"><h2>Make a Post</h2></div>
-    <div class= "discussion">
+    <h3 class="dan">Make a Post</h3>
+    <div class="container center">
     <form method="post" action="/discuss/makepost">
       <input type="text" name="title" placeholder="Title"/><br><br>
       <textarea rows="5" cols="40" name="content" placeholder="Let's Talk Dog!"></textarea></br>
@@ -55,7 +55,7 @@
     Login to post!<br><br>
     {% endif %}
 
-    <div class="container center margin"><h2>Posts</h2></div>
+    <h3 class="dan">Posts</h3>
     {% for post in posts %}
     <div class="container">
       <h5><a href="/discuss/post?id={{post.key.urlsafe()}}"><strong>{{post.title}}</strong></a></h5>

@@ -230,11 +230,7 @@ p {
   padding: 14px 16px;
 }
 
-.discussion {
-padding-left: 41%;
-padding-right: 0%;
-width: 140px;
-}
+
 
 #upload{
   display: flex;
@@ -242,7 +238,7 @@ width: 140px;
 #upload1{
   width: 175px;
 }
-#dan{
+.dan{
 text-align: center;
 font-size: 40px;
 }
